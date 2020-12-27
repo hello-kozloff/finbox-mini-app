@@ -1976,6 +1976,11 @@
     es6-object-assign "1.1.0"
     svg-baker-runtime "1.4.6"
 
+"@vkontakte/vk-connect@^1.9.1":
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/@vkontakte/vk-connect/-/vk-connect-1.9.1.tgz#e2ef892888071eac7252324e70da039c37ca58e3"
+  integrity sha512-a8tPp480/QVP2kR3beFQUJGBEaNegUS1JeJze5/G6i3jJQcK5Q+Yz+xtLy4YopDgy+24nQ8OZRjh3PUkvIrcfA==
+
 "@vkontakte/vkui@^4.0.3":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@vkontakte/vkui/-/vkui-4.0.3.tgz#d1d583e233392ab522dcdeac47e709b1a23bcfe9"
