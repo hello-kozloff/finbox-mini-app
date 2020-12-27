@@ -1981,6 +1981,11 @@
   resolved "https://registry.yarnpkg.com/@vkontakte/vk-connect/-/vk-connect-1.9.1.tgz#e2ef892888071eac7252324e70da039c37ca58e3"
   integrity sha512-a8tPp480/QVP2kR3beFQUJGBEaNegUS1JeJze5/G6i3jJQcK5Q+Yz+xtLy4YopDgy+24nQ8OZRjh3PUkvIrcfA==
 
+"@vkontakte/vkjs@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@vkontakte/vkjs/-/vkjs-0.18.0.tgz#bea38e7c6323438ded70505f37e5696361d8cdce"
+  integrity sha512-WMnN81z4wJPxjzUPOBS2OldZvPBp1dx7Wh3AXWWuvxa+0terZ98qzru2FDwWdDjNBLpOHhpdZEahIx0OCs1Kmw==
+
 "@vkontakte/vkui@^4.0.3":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@vkontakte/vkui/-/vkui-4.0.3.tgz#d1d583e233392ab522dcdeac47e709b1a23bcfe9"
