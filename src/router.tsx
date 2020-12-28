@@ -5,11 +5,11 @@ import { CatalogPanel, AppPanel } from './panels';
 import { IStory, TabRoute } from './types';
 
 /**
- * The app component.
+ * The app router.
  *
  * @constructor
  */
-export default function App(): React.ReactElement {
+export default function Router(): React.ReactElement {
   const [activeStory, setActiveStory] = React.useState<IStory>(TabRoute.Catalog);
 
   function onStoryChange(e: any): void {
