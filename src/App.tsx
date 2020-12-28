@@ -2,7 +2,7 @@ import React from 'react';
 import { AppRoot, Epic, Tabbar, TabbarItem, View } from '@vkontakte/vkui';
 import { Icon28BookOutline, Icon28ServicesOutline } from '@vkontakte/icons';
 import { CatalogPanel, AppPanel } from './panels';
-import { IStory } from './types/story';
+import { IStory, TabRoute } from './types';
 
 /**
  * The app component.
@@ -10,7 +10,7 @@ import { IStory } from './types/story';
  * @constructor
  */
 export default function App(): React.ReactElement {
-  const [activeStory, setActiveStory] = React.useState<IStory>('catalog');
+  const [activeStory, setActiveStory] = React.useState<IStory>(TabRoute.Catalog);
 
   function onStoryChange(e: any): void {
     return setActiveStory(e.currentTarget.dataset.story);
@@ -22,21 +22,21 @@ export default function App(): React.ReactElement {
         <Tabbar>
           <TabbarItem
             onClick={onStoryChange}
-            selected={activeStory === 'catalog'}
-            data-story="catalog"
+            selected={activeStory === TabRoute.Catalog}
+            data-story={TabRoute.Catalog}
           ><Icon28BookOutline /></TabbarItem>
           <TabbarItem
             onClick={onStoryChange}
-            selected={activeStory === 'app'}
-            data-story="app"
+            selected={activeStory === TabRoute.App}
+            data-story={TabRoute.App}
           ><Icon28ServicesOutline /></TabbarItem>
         </Tabbar>
       }>
-        <View id="catalog" activePanel="catalog">
-          <CatalogPanel id="catalog" />
+        <View id={TabRoute.Catalog} activePanel={TabRoute.Catalog}>
+          <CatalogPanel id={TabRoute.Catalog} />
         </View>
-        <View id="app" activePanel="app">
-          <AppPanel id="app" />
+        <View id={TabRoute.App} activePanel={TabRoute.App}>
+          <AppPanel id={TabRoute.App} />
         </View>
       </Epic>
     </AppRoot>
