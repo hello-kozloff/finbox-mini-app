@@ -15,7 +15,6 @@ function Contacts(props: IContactsProps): React.ReactElement {
   const [friends, setFriends] = React.useState<IFriend[]>([]);
 
   React.useEffect(() => {
-    console.log(props.access_token);
     bridge.send('VKWebAppCallAPIMethod', {
       method: 'friends.get',
       params: {
@@ -25,9 +24,7 @@ function Contacts(props: IContactsProps): React.ReactElement {
         access_token: props.access_token
       }
     })
-      .then((data: any) => {
-        setFriends(data.response.items);
-      })
+      .then((data: any) => setFriends(data.response.items))
       .catch((error) => console.error(error));
   }, [props]);
 
