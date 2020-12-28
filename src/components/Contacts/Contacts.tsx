@@ -1,4 +1,5 @@
 import React from 'react';
+import bridge from '@vkontakte/vk-bridge';
 import { connect } from 'react-redux';
 import { Avatar, Group, Header, SimpleCell } from '@vkontakte/vkui';
 import { IState } from "../../store/types/state";
@@ -11,6 +12,17 @@ import { IContactsProps } from './types';
  * @constructor
  */
 function Contacts(props: IContactsProps): React.ReactElement {
+  React.useEffect(() => {
+    bridge.send('VKWebAppCallAPIMethod', {
+      method: 'friends.get',
+      params: {
+        order: 'hints',
+        v: '5.8',
+        access_token: props.access_token
+      }
+    }).then((response) => console.log('111', response)).catch((error) => console.log('111', error));
+  }, [props]);
+
   return (
     <Group header={<Header mode="primary">Контакты</Header>} mode="plain">
       <SimpleCell
