@@ -19,6 +19,7 @@
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "@vkontakte/icons": "^1.69.0",
+    "@vkontakte/vk-bridge": "^2.3.0",
     "@vkontakte/vk-connect": "^1.9.1",
     "@vkontakte/vkjs": "^0.18.0",
     "@vkontakte/vkui": "^4.0.3",
