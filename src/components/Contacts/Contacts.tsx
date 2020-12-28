@@ -17,6 +17,7 @@ function Contacts(props: IContactsProps): React.ReactElement {
       method: 'friends.get',
       params: {
         order: 'hints',
+        fields: 'nickname,photo_100',
         v: '5.21',
         access_token: props.access_token
       }
