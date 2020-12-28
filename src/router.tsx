@@ -10,7 +10,7 @@ import { IStory, TabRoute } from './types';
  * @constructor
  */
 export default function Router(): React.ReactElement {
-  const [activeStory, setActiveStory] = React.useState<IStory>(TabRoute.Catalog);
+  const [activeStory, setActiveStory] = React.useState<IStory>(TabRoute.App);
 
   function onStoryChange(e: any): void {
     return setActiveStory(e.currentTarget.dataset.story);
