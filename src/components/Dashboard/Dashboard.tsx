@@ -12,12 +12,8 @@ export default function Dashboard(): React.ReactElement {
     <Group header={<Header mode="primary">Активные долги</Header>} mode="plain">
       <CardScroll size="m">
         <DashboardCard
-          subtitle="Взял в долг"
-          title="0 ₽"
-        />
-        <DashboardCard
           subtitle="Дал в долг"
-          title="0 ₽"
+          title="125 000 ₽"
         />
       </CardScroll>
     </Group>

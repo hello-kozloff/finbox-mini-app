@@ -10,9 +10,10 @@ export default function Contacts(): React.ReactElement {
   return (
     <Group header={<Header mode="primary">Контакты</Header>} mode="plain">
       <SimpleCell
+        description="Дал в долг 125 000 ₽"
         before={
           <Avatar size={48} />
-        }>Аристарх Димин</SimpleCell>
+        }>Даниил Фетисов</SimpleCell>
     </Group>
   )
 }
