@@ -17,7 +17,7 @@ function Contacts(props: IContactsProps): React.ReactElement {
       method: 'friends.get',
       params: {
         order: 'hints',
-        v: '5.8',
+        v: '5.21',
         access_token: props.access_token
       }
     }).then((response) => console.log('111', response)).catch((error) => console.log('111', error));
