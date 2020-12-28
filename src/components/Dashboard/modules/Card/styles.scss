@@ -1,3 +1,27 @@
 .dashboard-card {
+  border-radius: 8px;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 48px 12px;
+  display: grid;
 
+  &_accent {
+    .dashboard-card__subtitle {
+      color: rgba(#fff, .8);
+    }
+
+    .dashboard-card__title {
+      color: #fff;
+    }
+
+    background-color: var(--accent);
+  }
+}
+
+.dashboard-card__subtitle {
+  font-size: 12px;
+}
+
+.dashboard-card__title {
+  font-size: 22px;
 }
