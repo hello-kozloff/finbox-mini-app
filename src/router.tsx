@@ -1,4 +1,6 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
 import { AppRoot, Epic, Tabbar, TabbarItem, View } from '@vkontakte/vkui';
 import { Icon28BookOutline, Icon28ServicesOutline } from '@vkontakte/icons';
 import { CatalogPanel, AppPanel } from './panels';
@@ -17,28 +19,30 @@ export default function Router(): React.ReactElement {
   }
 
   return (
-    <AppRoot>
-      <Epic activeStory={activeStory} tabbar={
-        <Tabbar>
-          <TabbarItem
-            onClick={onStoryChange}
-            selected={activeStory === TabRoute.Catalog}
-            data-story={TabRoute.Catalog}
-          ><Icon28BookOutline /></TabbarItem>
-          <TabbarItem
-            onClick={onStoryChange}
-            selected={activeStory === TabRoute.App}
-            data-story={TabRoute.App}
-          ><Icon28ServicesOutline /></TabbarItem>
-        </Tabbar>
-      }>
-        <View id={TabRoute.Catalog} activePanel={TabRoute.Catalog}>
-          <CatalogPanel id={TabRoute.Catalog} />
-        </View>
-        <View id={TabRoute.App} activePanel={TabRoute.App}>
-          <AppPanel id={TabRoute.App} />
-        </View>
-      </Epic>
-    </AppRoot>
+    <Provider store={store}>
+      <AppRoot>
+        <Epic activeStory={activeStory} tabbar={
+          <Tabbar>
+            <TabbarItem
+              onClick={onStoryChange}
+              selected={activeStory === TabRoute.Catalog}
+              data-story={TabRoute.Catalog}
+            ><Icon28BookOutline /></TabbarItem>
+            <TabbarItem
+              onClick={onStoryChange}
+              selected={activeStory === TabRoute.App}
+              data-story={TabRoute.App}
+            ><Icon28ServicesOutline /></TabbarItem>
+          </Tabbar>
+        }>
+          <View id={TabRoute.Catalog} activePanel={TabRoute.Catalog}>
+            <CatalogPanel id={TabRoute.Catalog} />
+          </View>
+          <View id={TabRoute.App} activePanel={TabRoute.App}>
+            <AppPanel id={TabRoute.App} />
+          </View>
+        </Epic>
+      </AppRoot>
+    </Provider>
   );
 }
