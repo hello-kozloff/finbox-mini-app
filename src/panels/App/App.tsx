@@ -11,7 +11,7 @@ import { PanelProps } from '@vkontakte/vkui/dist/components/Panel/Panel';
 export default function AppPanel(props: PanelProps): React.ReactElement {
   return (
     <Panel id={props.id}>
-      <PanelHeader>App</PanelHeader>
+      <PanelHeader>Долги</PanelHeader>
     </Panel>
   );
 }
