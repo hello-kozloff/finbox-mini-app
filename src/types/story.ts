@@ -1,1 +1,2 @@
-export type IStory = string;
+type IStory = string;
+export default IStory;

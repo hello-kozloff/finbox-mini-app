@@ -1,7 +1,9 @@
 /**
  * The tab routes with names.
  */
-export enum TabRoute {
+enum TabRoute {
   'Catalog' = 'catalog',
   'App' = 'app'
 }
+
+export default TabRoute;
