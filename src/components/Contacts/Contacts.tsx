@@ -1,5 +1,4 @@
 import React from 'react';
-import bridge from '@vkontakte/vk-bridge';
 import { Avatar, Group, Header, SimpleCell } from '@vkontakte/vkui';
 
 /**
@@ -8,18 +7,6 @@ import { Avatar, Group, Header, SimpleCell } from '@vkontakte/vkui';
  * @constructor
  */
 export default function Contacts(): React.ReactElement {
-  bridge
-    .send('VKWebAppGetAuthToken', {
-      'app_id': 7712603,
-      'scope': 'friends'
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-
   return (
     <Group header={<Header mode="primary">Контакты</Header>} mode="plain">
       <SimpleCell
