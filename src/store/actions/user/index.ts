@@ -12,3 +12,12 @@ export function setUser(payload: ISetUserAction['payload']): UserAction {
     payload
   };
 }
+
+/**
+ * The fetch access token action.
+ */
+export function fetchAccessToken(): UserAction {
+  return {
+    type: constants.FETCH_ACCESS_TOKEN,
+  };
+}
