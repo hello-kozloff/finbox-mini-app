@@ -1,6 +1,7 @@
 import * as constants from '../../constants/user';
 import { UserAction } from '../../actions/user/types';
 import { IUserState } from './types';
+import {IState} from "../../types/state";
 
 const initialState: IUserState = {
   access_token: ''
@@ -21,3 +22,10 @@ export function userReducer(state = initialState, action: UserAction) {
     default: return state;
   }
 }
+
+/**
+ * The function return user state.
+ *
+ * @param state
+ */
+export const getUserState = (state: IState) => state.user;
