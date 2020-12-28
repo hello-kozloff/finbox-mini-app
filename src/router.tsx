@@ -1,18 +1,24 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+import { Provider, connect } from 'react-redux';
 import { store } from './store';
 import { AppRoot, Epic, Tabbar, TabbarItem, View } from '@vkontakte/vkui';
 import { Icon28BookOutline, Icon28ServicesOutline } from '@vkontakte/icons';
+import { fetchAccessToken } from './store/actions/user';
 import { CatalogPanel, AppPanel } from './panels';
-import { IStory, TabRoute } from './types';
+import { IRouterProps, IStory, TabRoute } from './types';
 
 /**
  * The app router.
  *
  * @constructor
  */
-export default function Router(): React.ReactElement {
+function Router(props: IRouterProps): React.ReactElement {
   const [activeStory, setActiveStory] = React.useState<IStory>(TabRoute.App);
+
+  React.useEffect(() => {
+    props.fetchAccessToken();
+  }, [props]);
 
   function onStoryChange(e: any): void {
     return setActiveStory(e.currentTarget.dataset.story);
@@ -46,3 +52,9 @@ export default function Router(): React.ReactElement {
     </Provider>
   );
 }
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  fetchAccessToken: bindActionCreators(fetchAccessToken, dispatch)
+});
+
+export default connect(null, mapDispatchToProps)(Router);
