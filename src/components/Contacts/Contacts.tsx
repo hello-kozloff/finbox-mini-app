@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import { Avatar, Group, Header, SimpleCell } from '@vkontakte/vkui';
 import { IState } from "../../store/types/state";
 import { getUserState } from "../../store/reducers/user";
+import { IContactsProps } from './types';
 
 /**
  * The contacts component.
  *
  * @constructor
  */
-function Contacts(): React.ReactElement {
+function Contacts(props: IContactsProps): React.ReactElement {
   return (
     <Group header={<Header mode="primary">Контакты</Header>} mode="plain">
       <SimpleCell
