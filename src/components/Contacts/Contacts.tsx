@@ -1,12 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Avatar, Group, Header, SimpleCell } from '@vkontakte/vkui';
+import { IState } from "../../store/types/state";
+import { getUserState } from "../../store/reducers/user";
 
 /**
  * The contacts component.
  *
  * @constructor
  */
-export default function Contacts(): React.ReactElement {
+function Contacts(): React.ReactElement {
   return (
     <Group header={<Header mode="primary">Контакты</Header>} mode="plain">
       <SimpleCell
@@ -17,3 +20,9 @@ export default function Contacts(): React.ReactElement {
     </Group>
   )
 }
+
+const mapStateToProps = (state: IState) => ({
+  access_token: getUserState(state).access_token
+});
+
+export default connect(mapStateToProps)(Contacts);
