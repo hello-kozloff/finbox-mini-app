@@ -12,6 +12,13 @@ export interface ISetUserAction {
 }
 
 /**
+ * The fetch access token action interface.
+ */
+export interface IFetchAccessTokenAction {
+  type: typeof constants.FETCH_ACCESS_TOKEN;
+}
+
+/**
  * User user action type.
  */
-export type UserAction = ISetUserAction;
+export type UserAction = ISetUserAction | IFetchAccessTokenAction;
