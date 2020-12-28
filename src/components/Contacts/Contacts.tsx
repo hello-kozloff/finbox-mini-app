@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Avatar, Group, Header, SimpleCell } from '@vkontakte/vkui';
 import { IState } from "../../store/types/state";
 import { getUserState } from "../../store/reducers/user";
-import { IContactsProps } from './types';
+import { IContactsProps, IFriend } from './types';
 
 /**
  * The contacts component.
@@ -12,7 +12,10 @@ import { IContactsProps } from './types';
  * @constructor
  */
 function Contacts(props: IContactsProps): React.ReactElement {
+  const [friends, setFriends] = React.useState<IFriend[]>([]);
+
   React.useEffect(() => {
+    console.log(props.access_token);
     bridge.send('VKWebAppCallAPIMethod', {
       method: 'friends.get',
       params: {
@@ -21,16 +24,28 @@ function Contacts(props: IContactsProps): React.ReactElement {
         v: '5.21',
         access_token: props.access_token
       }
-    }).then((response) => console.log('111', response)).catch((error) => console.log('111', error));
+    })
+      .then((data: any) => {
+        setFriends(data.response.items);
+      })
+      .catch((error) => console.error(error));
   }, [props]);
+
+  /**
+   * The function render friends.
+   * @param friends
+   */
+  function renderFriends(friends: IFriend[]) {
+    return friends.map((friend) => (
+      <SimpleCell before={<Avatar src={friend.photo_100} size={48} />}>
+        {friend.first_name} {friend.last_name}
+      </SimpleCell>
+    ))
+  }
 
   return (
     <Group header={<Header mode="primary">Контакты</Header>} mode="plain">
-      <SimpleCell
-        description="Дал в долг 125 000 ₽"
-        before={
-          <Avatar size={48} />
-        }>Даниил Фетисов</SimpleCell>
+      {renderFriends(friends)}
     </Group>
   )
 }
