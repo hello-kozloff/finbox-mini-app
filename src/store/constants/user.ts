@@ -1,1 +1,2 @@
 export const SET_USER = 'SET_USER';
+export const FETCH_ACCESS_TOKEN = 'FETCH_ACCESS_TOKEN';
