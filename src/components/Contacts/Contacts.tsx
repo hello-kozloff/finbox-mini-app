@@ -9,7 +9,10 @@ import { Avatar, Group, Header, SimpleCell } from '@vkontakte/vkui';
  */
 export default function Contacts(): React.ReactElement {
   bridge
-    .send('VKWebAppGetFriends')
+    .send('VKWebAppGetAuthToken', {
+      'app_id': 7712603,
+      'scope': 'friends'
+    })
     .then(data => {
       console.log(data);
     })
