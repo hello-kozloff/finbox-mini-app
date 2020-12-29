@@ -19,8 +19,8 @@ export default function DashboardCard(props: IDashboardCardProps): React.ReactEl
   return (
     <CardWrapper>
       <div className={dashboardCard()}>
-        <span className={dashboardCard('subtitle')}>{props.subtitle}</span>
-        <strong className={dashboardCard('title')}>{props.title}</strong>
+        {props.subtitle && <span className={dashboardCard('subtitle')}>{props.subtitle}</span>}
+        {props.title && <strong className={dashboardCard('title')}>{props.title}</strong>}
       </div>
     </CardWrapper>
   );
