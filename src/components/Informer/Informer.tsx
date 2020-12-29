@@ -1,7 +1,7 @@
 import React from 'react';
 import { block } from 'bem-cn';
-import { Group, Div, Button } from '@vkontakte/vkui';
-import { Icon24Add } from '@vkontakte/icons';
+import { Group, Header, Headline, Cell, CellButton, IconButton } from '@vkontakte/vkui';
+import { Icon24HistoryBackwardOutline, Icon24Add } from '@vkontakte/icons';
 
 /**
  * The class generator.
@@ -15,12 +15,13 @@ const informer = block('informer');
  */
 export default function Informer(): React.ReactElement {
   return (
-    <Group className={informer()}>
-      <Div className={informer('add-debt')}>
-        <Button mode="primary" size="l" stretched before={<Icon24Add />}>
-          Добавить долг
-        </Button>
-      </Div>
+    <Group header={<Header mode="secondary">Нет просроченных долгов</Header>}>
+      <CellButton before={<Icon24HistoryBackwardOutline />}>
+        Показать статистику
+      </CellButton>
+      <CellButton before={<Icon24Add />}>
+        Добавить долг
+      </CellButton>
     </Group>
   );
 }
