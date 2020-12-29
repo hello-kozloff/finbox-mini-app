@@ -183,7 +183,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
           <FormItem top="Контакт">
             <Select
               placeholder="Выберите контакт"
-              options={[...createFriendsOptions(props.friends), { value: '123', label: 'wverwevr' }]}
+              options={createFriendsOptions(props.friends)}
               defaultValue={formState.contactId !== null ? formState.contactId : undefined}
               onChange={(e) => {
                 setFormState({
