@@ -10,10 +10,7 @@ import { IInformerProps } from "./types";
  */
 export default function Informer(props: IInformerProps): React.ReactElement {
   return (
-    <Group header={<Header mode="secondary">Нет просроченных долгов</Header>}>
-      <CellButton before={<Icon24HistoryBackwardOutline />} disabled>
-        Показать статистику
-      </CellButton>
+    <Group>
       <CellButton
         before={<Icon24Add />}
         onClick={() => props.onModalShow && props.onModalShow('add-debt')}>
