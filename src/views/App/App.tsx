@@ -105,6 +105,8 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                     currency: formState.currency,
                     contactId: formState.contactId
                   });
+
+                  onCancelModal();
                 }}>
                   <Icon24Add />
                 </PanelHeaderButton>
