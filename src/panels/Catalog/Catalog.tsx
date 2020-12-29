@@ -1,6 +1,6 @@
 import React from 'react';
 import { Panel, PanelHeader } from '@vkontakte/vkui';
-import { PanelProps } from '@vkontakte/vkui/dist/components/Panel/Panel';
+import IPanelProps from "../../types/panelProps";
 
 /**
  * The catalog panel.
@@ -8,7 +8,7 @@ import { PanelProps } from '@vkontakte/vkui/dist/components/Panel/Panel';
  * @param props
  * @constructor
  */
-export default function CatalogPanel(props: PanelProps): React.ReactElement {
+export default function CatalogPanel(props: IPanelProps): React.ReactElement {
   return (
     <Panel id={props.id}>
       <PanelHeader>Каталог</PanelHeader>
