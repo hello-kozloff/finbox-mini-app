@@ -165,8 +165,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                   placeholder="Валюта"
                   defaultValue={formState.currency !== null ? formState.currency : undefined}
                   options={[
-                    { value: 'RUB', label: 'RUB' },
-                    { value: 'USD', label: 'USD' }
+                    { value: 'RUB', label: 'RUB' }
                   ]}
                   onChange={(e) => {
                     setFormState({
