@@ -15,6 +15,14 @@ export default function AppView(props: ViewProps & PanelProps): React.ReactEleme
   const [activeModal, setActiveModal] = React.useState<IModal | null>(null);
 
   /**
+   * The function show modal.
+   * @param modalName
+   */
+  function onShowModal(modalName: string): void {
+    return setActiveModal(modalName);
+  }
+
+  /**
    * The function cancel modal.
    */
   function onCancelModal(): void {
@@ -48,7 +56,7 @@ export default function AppView(props: ViewProps & PanelProps): React.ReactEleme
 
   return (
     <View id={props.id} modal={modal} activePanel={props.activePanel}>
-      <AppPanel id={props.id} />
+      <AppPanel id={props.id} onShowModal={onShowModal} />
     </View>
   );
 }
