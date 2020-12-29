@@ -1,6 +1,20 @@
 import React from 'react';
-import { View, ModalRoot, ModalPage, ModalPageHeader, PanelHeaderButton, Group, FormItem, Input } from '@vkontakte/vkui';
-import { Icon24Cancel, Icon24Done } from '@vkontakte/icons';
+import {
+  View,
+  ModalRoot,
+  ModalPage,
+  ModalPageHeader,
+  PanelHeaderButton,
+  Group,
+  FormItem,
+  Radio,
+  Input,
+  Select,
+  CustomSelectOption,
+  Avatar,
+  Button
+} from '@vkontakte/vkui';
+import { Icon24Cancel, Icon24Add } from '@vkontakte/icons';
 import { AppPanel } from "../../panels";
 import { ViewProps } from "@vkontakte/vkui/dist/components/View/View";
 import { PanelProps } from "@vkontakte/vkui/dist/components/Panel/Panel";
@@ -38,16 +52,43 @@ export default function AppView(props: ViewProps & PanelProps): React.ReactEleme
               <Icon24Cancel />
             </PanelHeaderButton>
           }
-          right={
-            <PanelHeaderButton>
-              <Icon24Done />
-            </PanelHeaderButton>
-          }
         >Добавить долг</ModalPageHeader>
       }>
         <Group>
+          <FormItem top="Тип долга">
+            <Radio name="type" value="lent" defaultChecked>
+              Дал в долг
+            </Radio>
+            <Radio name="type" value="borrowed">
+              Взял в долг
+            </Radio>
+          </FormItem>
           <FormItem top="Сумма">
-            <Input placeholder="К примеру: 347 ₽" />
+            <div style={{ display: 'grid', gridAutoFlow: 'column', gap: '12px', gridTemplateColumns: '1fr 100px' }}>
+              <Input placeholder="Введите сумму" />
+              <Select
+                options={[
+                  { value: 'RUB', label: 'RUB' },
+                  { value: 'USD', label: 'USD' }
+                ]}
+                placeholder="Валюта"
+                defaultValue="RUB"
+              />
+            </div>
+          </FormItem>
+          <FormItem top="Контакт">
+            <Select
+              placeholder="Выберите контакт"
+              options={[]}
+              renderOption={({ option, ...restProps }) => (
+                <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
+              )}
+            />
+          </FormItem>
+          <FormItem>
+            <Button mode="primary" size="l" before={<Icon24Add />} stretched>
+              Добавить
+            </Button>
           </FormItem>
         </Group>
       </ModalPage>
