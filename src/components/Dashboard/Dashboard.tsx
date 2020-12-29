@@ -45,7 +45,10 @@ export default function Dashboard(): React.ReactElement {
             return data.isLoading ? (
               <Spinner size="medium" />
             ) : data.value ? (
-              <DashboardCard subtitle={`${data.value && getTotal(data.value)} ₽`} />
+              <DashboardCard
+                title={`${data.value && getTotal(data.value)} ₽`}
+                subtitle="Взял в долг"
+              />
             ) : (
               <DashboardCard subtitle="Вы не брали в долг" />
             )
