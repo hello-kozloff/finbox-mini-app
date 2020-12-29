@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Avatar, Group, Header, SimpleCell } from '@vkontakte/vkui';
+import { Avatar, Group, Header, SimpleCell, Spinner } from '@vkontakte/vkui';
 import { IState } from "../../store/types/state";
 import { getFriendsState } from "../../store/reducers/friends";
 import { IContactsProps } from './types';
@@ -25,7 +25,7 @@ function Contacts(props: IContactsProps): React.ReactElement {
 
   return (
     <Group header={<Header mode="primary">Контакты</Header>} mode="plain">
-      {renderFriends(props.friends)}
+      {props.friends.length > 0 ? renderFriends(props.friends) : <Spinner size="medium" />}
     </Group>
   )
 }
