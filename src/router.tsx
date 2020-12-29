@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { AppRoot, Epic, Tabbar, TabbarItem, View } from '@vkontakte/vkui';
 import { Icon28BookOutline, Icon28ServicesOutline } from '@vkontakte/icons';
 import { fetchAccessToken } from './store/actions/user';
-import { CatalogPanel, AppPanel } from './panels';
+import { CatalogView, AppView } from './views';
 import { IRouterProps, IStory, TabRoute } from './types';
 
 /**
@@ -39,12 +39,8 @@ function Router(props: IRouterProps): React.ReactElement {
           ><Icon28ServicesOutline /></TabbarItem>
         </Tabbar>
       }>
-        <View id={TabRoute.Catalog} activePanel={TabRoute.Catalog}>
-          <CatalogPanel id={TabRoute.Catalog} />
-        </View>
-        <View id={TabRoute.App} activePanel={TabRoute.App}>
-          <AppPanel id={TabRoute.App} />
-        </View>
+        <CatalogView id={TabRoute.Catalog} activePanel={TabRoute.Catalog} />
+        <AppView id={TabRoute.App} activePanel={TabRoute.App} />
       </Epic>
     </AppRoot>
   );
