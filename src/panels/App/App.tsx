@@ -13,7 +13,7 @@ export default function AppPanel(props: IPanelProps): React.ReactElement {
   return (
     <Panel id={props.id}>
       <PanelHeader>Долги</PanelHeader>
-      <Informer />
+      <Informer onModalShow={props.onShowModal} />
       <Dashboard />
       <Contacts />
     </Panel>
