@@ -1,4 +1,7 @@
 import React from 'react';
+import firebase from 'firebase';
+import config from './firebase/config';
+import { FirebaseDatabaseProvider } from '@react-firebase/database';
 import { Provider } from 'react-redux';
 import { store } from './store';
 import Router from './router';
@@ -10,8 +13,10 @@ import Router from './router';
  */
 export default function App(): React.ReactElement {
   return (
-    <Provider store={store}>
-      <Router />
-    </Provider>
+    <FirebaseDatabaseProvider firebase={firebase} {...config}>
+      <Provider store={store}>
+        <Router />
+      </Provider>
+    </FirebaseDatabaseProvider>
   );
 }
