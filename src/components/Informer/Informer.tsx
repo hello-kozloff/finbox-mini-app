@@ -10,7 +10,7 @@ import { Icon24HistoryBackwardOutline, Icon24Add } from '@vkontakte/icons';
 export default function Informer(): React.ReactElement {
   return (
     <Group header={<Header mode="secondary">Нет просроченных долгов</Header>}>
-      <CellButton before={<Icon24HistoryBackwardOutline />}>
+      <CellButton before={<Icon24HistoryBackwardOutline />} disabled>
         Показать статистику
       </CellButton>
       <CellButton before={<Icon24Add />}>
