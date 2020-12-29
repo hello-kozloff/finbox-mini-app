@@ -127,9 +127,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                       type: e.target.value
                     });
                   }}
-                >
-                  Дал в долг
-                </Radio>
+                >Дал в долг</Radio>
               </FormItem>
               <FormItem>
                 <Radio
@@ -142,9 +140,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                       type: e.target.value
                     });
                   }}
-                >
-                  Дал в долг
-                </Radio>
+                >Дал в долг</Radio>
               </FormItem>
             </FormLayoutGroup>
           </FormLayout>
@@ -164,12 +160,12 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
               </FormItem>
               <FormItem top="Валюта">
                 <Select
+                  placeholder="Валюта"
+                  defaultValue={formState.currency !== null ? formState.currency : undefined}
                   options={[
                     { value: 'RUB', label: 'RUB' },
                     { value: 'USD', label: 'USD' }
                   ]}
-                  placeholder="Валюта"
-                  defaultValue={formState.currency !== null ? formState.currency : undefined}
                   onChange={(e) => {
                     setFormState({
                       ...formState,
