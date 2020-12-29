@@ -1,12 +1,6 @@
 import React from 'react';
-import { block } from 'bem-cn';
-import { Group, Header, Headline, Cell, CellButton, IconButton } from '@vkontakte/vkui';
+import { Group, Header, CellButton } from '@vkontakte/vkui';
 import { Icon24HistoryBackwardOutline, Icon24Add } from '@vkontakte/icons';
-
-/**
- * The class generator.
- */
-const informer = block('informer');
 
 /**
  * The informer component.
