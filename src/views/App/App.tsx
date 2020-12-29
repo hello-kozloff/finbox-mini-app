@@ -22,13 +22,17 @@ import { AppPanel } from "../../panels";
 import { ViewProps } from "@vkontakte/vkui/dist/components/View/View";
 import { PanelProps } from "@vkontakte/vkui/dist/components/Panel/Panel";
 import IModal from "../../types/modal";
+import {connect} from "react-redux";
+import {IState} from "../../store/types/state";
+import {getFriendsState} from "../../store/reducers/friends";
+import {IFriendsState} from "../../store/reducers/friends/types";
 
 /**
  * The app view.
  *
  * @constructor
  */
-export default function AppView(props: ViewProps & PanelProps): React.ReactElement {
+function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): React.ReactElement {
   const [activeModal, setActiveModal] = React.useState<IModal | null>(null);
 
   /**
@@ -44,6 +48,24 @@ export default function AppView(props: ViewProps & PanelProps): React.ReactEleme
    */
   function onCancelModal(): void {
     return setActiveModal(null);
+  }
+
+  /**
+   * The function create friends options.
+   * @param friends
+   */
+  function createFriendsOptions(friends: IFriendsState) {
+    const result: { value: number; label: string; avatar: string; }[] = [];
+
+    friends.forEach((friend) => {
+      result.push({
+        value: friend.id,
+        label: `${friend.first_name} ${friend.last_name}`,
+        avatar: friend.photo_100
+      });
+    });
+
+    return result;
   }
 
   const modal = (
@@ -90,7 +112,7 @@ export default function AppView(props: ViewProps & PanelProps): React.ReactEleme
           <FormItem top="Контакт">
             <Select
               placeholder="Выберите контакт"
-              options={[]}
+              options={createFriendsOptions(props.friends)}
               renderOption={({ option, ...restProps }) => (
                 <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
               )}
@@ -121,3 +143,9 @@ export default function AppView(props: ViewProps & PanelProps): React.ReactEleme
     </View>
   );
 }
+
+const mapStateToProps = (state: IState) => ({
+  friends: getFriendsState(state)
+});
+
+export default connect(mapStateToProps)(AppView);
