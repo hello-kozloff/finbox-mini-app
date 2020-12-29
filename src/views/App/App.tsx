@@ -6,6 +6,8 @@ import {
   ModalPageHeader,
   PanelHeaderButton,
   Group,
+  FormLayout,
+  FormLayoutGroup,
   FormItem,
   Radio,
   Input,
@@ -56,27 +58,35 @@ export default function AppView(props: ViewProps & PanelProps): React.ReactEleme
         >Добавить долг</ModalPageHeader>
       }>
         <Group>
-          <FormItem top="Тип долга">
-            <Radio name="type" value="lent" defaultChecked>
-              Дал в долг
-            </Radio>
-            <Radio name="type" value="borrowed">
-              Взял в долг
-            </Radio>
-          </FormItem>
-          <FormItem top="Сумма">
-            <div style={{ display: 'grid', gridAutoFlow: 'column', gap: '12px', gridTemplateColumns: '1fr 100px' }}>
-              <Input placeholder="Введите сумму" />
-              <Select
-                options={[
-                  { value: 'RUB', label: 'RUB' },
-                  { value: 'USD', label: 'USD' }
-                ]}
-                placeholder="Валюта"
-                defaultValue="RUB"
-              />
-            </div>
-          </FormItem>
+          <FormLayout>
+            <FormLayoutGroup mode="horizontal">
+              <FormItem>
+                <Radio name="type" value="lent" defaultChecked>
+                  Дал в долг
+                </Radio>
+              </FormItem>
+              <FormItem>
+                <Radio name="type" value="borrowed">
+                  Дал в долг
+                </Radio>
+              </FormItem>
+            </FormLayoutGroup>
+            <FormLayoutGroup mode="horizontal">
+              <FormItem top="Сумма">
+                <Input placeholder="Введите сумму" />
+              </FormItem>
+              <FormItem top="Валюта">
+                <Select
+                  options={[
+                    { value: 'RUB', label: 'RUB' },
+                    { value: 'USD', label: 'USD' }
+                  ]}
+                  placeholder="Валюта"
+                  defaultValue="RUB"
+                />
+              </FormItem>
+            </FormLayoutGroup>
+          </FormLayout>
           <FormItem top="Контакт">
             <Select
               placeholder="Выберите контакт"
