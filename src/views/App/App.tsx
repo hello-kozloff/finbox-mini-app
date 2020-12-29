@@ -26,6 +26,7 @@ import {connect} from "react-redux";
 import {IState} from "../../store/types/state";
 import {getFriendsState} from "../../store/reducers/friends";
 import {IFriendsState} from "../../store/reducers/friends/types";
+import {FirebaseDatabaseMutation} from "@react-firebase/database";
 
 /**
  * The app view.
@@ -34,6 +35,9 @@ import {IFriendsState} from "../../store/reducers/friends/types";
  */
 function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): React.ReactElement {
   const [activeModal, setActiveModal] = React.useState<IModal | null>(null);
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const userId = urlParams.get('vk_user_id');
 
   /**
    * The function show modal.
@@ -128,9 +132,18 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
             />
           </FormItem>
           <FormItem>
-            <Button mode="primary" size="l" before={<Icon24Add />} stretched>
-              Добавить
-            </Button>
+            <FirebaseDatabaseMutation path={`${userId}`} type="push">
+              {({ runMutation }) => (
+                <Button
+                  mode="primary"
+                  size="l"
+                  before={<Icon24Add />}
+                  stretched
+                  onClick={async () => {
+                    await runMutation({ TEST: 'DATA' });
+                  }}>Добавить</Button>
+              )}
+            </FirebaseDatabaseMutation>
           </FormItem>
         </Group>
       </ModalPage>
