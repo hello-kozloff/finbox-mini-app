@@ -11,6 +11,7 @@ import {
   Input,
   Select,
   CustomSelectOption,
+  DatePicker,
   Avatar,
   Button
 } from '@vkontakte/vkui';
@@ -83,6 +84,15 @@ export default function AppView(props: ViewProps & PanelProps): React.ReactEleme
               renderOption={({ option, ...restProps }) => (
                 <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
               )}
+            />
+          </FormItem>
+          <FormItem top="Дата возврата">
+            <DatePicker
+              min={{day: 1, month: 1, year: 1901}}
+              max={{day: 1, month: 1, year: 2020}}
+              dayPlaceholder="Д"
+              monthPlaceholder="ММ"
+              yearPlaceholder="ГГ"
             />
           </FormItem>
           <FormItem>
