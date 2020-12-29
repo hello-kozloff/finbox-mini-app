@@ -142,7 +142,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                       type: e.target.value
                     });
                   }}
-                >Дал в долг</Radio>
+                >Взял в долг</Radio>
               </FormItem>
             </FormLayoutGroup>
           </FormLayout>
