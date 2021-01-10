@@ -26,7 +26,7 @@ export default function Dashboard(): React.ReactElement {
   return (
     <Group mode="plain">
       <CardScroll size="m">
-        <FirebaseDatabaseNode path={`${userId}/lent`}>
+        <FirebaseDatabaseNode path={`${userId}/borrowed`}>
           {(data) => {
             return data.isLoading ? (
               <Spinner size="medium" />
@@ -43,7 +43,7 @@ export default function Dashboard(): React.ReactElement {
             )
           }}
         </FirebaseDatabaseNode>
-        <FirebaseDatabaseNode path={`${userId}/borrowed`}>
+        <FirebaseDatabaseNode path={`${userId}/lent`}>
           {(data) => {
             return data.isLoading ? (
               <Spinner size="medium" />
