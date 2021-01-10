@@ -1,6 +1,6 @@
 import React from 'react';
 import { Panel, PanelHeader } from '@vkontakte/vkui';
-import { Informer, Dashboard } from '../../components';
+import { ContentFix, Informer, Dashboard } from '../../components';
 import IPanelProps from "../../types/panelProps";
 
 /**
@@ -14,7 +14,9 @@ export default function AppPanel(props: IPanelProps): React.ReactElement {
     <Panel id={props.id}>
       <PanelHeader>Долги</PanelHeader>
       {/*<Informer onModalShow={props.onShowModal} />*/}
-      <Dashboard />
+      <ContentFix>
+        <Dashboard />
+      </ContentFix>
     </Panel>
   );
 }
