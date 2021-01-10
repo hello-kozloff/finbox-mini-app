@@ -3,7 +3,7 @@
 * Этот файл сгенерирован автоматически. Не надо править его руками.
 */
 :root {
-  --accent: #3f8ae0;
+  --accent: #0099FF;
   --action_sheet_action_foreground: #3f8ae0;
   --action_sheet_separator: rgba(0, 0, 0, 0.12);
   --activity_indicator_tint: #aeb7c2;
@@ -79,7 +79,7 @@
   --header_alternate_tab_active_indicator: #3f8ae0;
   --header_alternate_tab_active_text: #000000;
   --header_alternate_tab_inactive_text: #99a2ad;
-  --header_background: #ffffff;
+  --header_background: var(--accent);
   --header_background_before_blur: #ffffff;
   --header_background_before_blur_alternate: #ffffff;
   --header_search_field_background: #ebedf0;
