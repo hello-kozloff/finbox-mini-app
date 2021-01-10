@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/finbox-mini-app/static/css/main.eab856eb.chunk.css",
-    "main.js": "/finbox-mini-app/static/js/main.73ac82c9.chunk.js",
-    "main.js.map": "/finbox-mini-app/static/js/main.73ac82c9.chunk.js.map",
+    "main.js": "/finbox-mini-app/static/js/main.d21bef0b.chunk.js",
+    "main.js.map": "/finbox-mini-app/static/js/main.d21bef0b.chunk.js.map",
     "runtime-main.js": "/finbox-mini-app/static/js/runtime-main.d08b381a.js",
     "runtime-main.js.map": "/finbox-mini-app/static/js/runtime-main.d08b381a.js.map",
     "static/js/2.3476036c.chunk.js": "/finbox-mini-app/static/js/2.3476036c.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.d08b381a.js",
     "static/js/2.3476036c.chunk.js",
     "static/css/main.eab856eb.chunk.css",
-    "static/js/main.73ac82c9.chunk.js"
+    "static/js/main.d21bef0b.chunk.js"
   ]
 }
