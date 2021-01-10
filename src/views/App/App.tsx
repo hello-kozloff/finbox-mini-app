@@ -177,8 +177,13 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
             <DatePicker
               min={{day: 1, month: 1, year: 1901}}
               max={{day: 1, month: 1, year: 2006}}
-              onDateChange={(value) => {console.log(value)}}
-              dayPlaceholder="Д"
+              onDateChange={(date) => {
+                setFormState({
+                  ...formState,
+                  date
+                });
+              }}
+              dayPlaceholder="ДД"
               monthPlaceholder="ММ"
               yearPlaceholder="ГГ"
             />
