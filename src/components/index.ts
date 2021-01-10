@@ -6,3 +6,5 @@ export type { IInformerProps } from './Informer/types';
 
 export { default as ContentFix } from './ContentFix/ContentFix';
 export type { IContentFixProps } from './ContentFix/types';
+
+export { default as AddButton } from './AddButton/AddButton';
