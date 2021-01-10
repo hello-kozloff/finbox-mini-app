@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardScroll, Group, Header, Spinner } from '@vkontakte/vkui';
+import { CardScroll, Group, Spinner } from '@vkontakte/vkui';
 import { DashboardCard } from './modules';
 import { FirebaseDatabaseNode } from "@react-firebase/database";
 
@@ -24,7 +24,7 @@ export default function Dashboard(): React.ReactElement {
   }
 
   return (
-    <Group header={<Header mode="primary">Активные долги</Header>} mode="plain">
+    <Group mode="plain">
       <CardScroll size="m">
         <FirebaseDatabaseNode path={`${userId}/lent`}>
           {(data) => {
