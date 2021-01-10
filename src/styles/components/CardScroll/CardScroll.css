@@ -38,7 +38,7 @@
  */
 
 .CardScroll--ios .CardScroll__gap {
-  width: 12px;
+  width: 32px;
 }
 
 /**
@@ -47,7 +47,7 @@
 
 .CardScroll--android .CardScroll__gap,
 .CardScroll--vkcom .CardScroll__gap {
-  width: 16px;
+  width: 32px;
 }
 
 /**

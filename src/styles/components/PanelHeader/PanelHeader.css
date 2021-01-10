@@ -177,6 +177,7 @@
 .PanelHeader--android .PanelHeader__in {
   height: var(--panelheader_height_android);
   padding-top: 40px;
+  box-sizing: border-box;
 }
 
 .PanelHeader--android .PanelHeader__left:not(:empty) {
