@@ -1,23 +1,20 @@
 {
   "files": {
-    "main.css": "/finbox-mini-app/static/css/main.fbef37fa.chunk.css",
-    "main.js": "/finbox-mini-app/static/js/main.3b40b7ed.chunk.js",
-    "main.js.map": "/finbox-mini-app/static/js/main.3b40b7ed.chunk.js.map",
+    "main.css": "/finbox-mini-app/static/css/main.30216797.chunk.css",
+    "main.js": "/finbox-mini-app/static/js/main.741b58d9.chunk.js",
+    "main.js.map": "/finbox-mini-app/static/js/main.741b58d9.chunk.js.map",
     "runtime-main.js": "/finbox-mini-app/static/js/runtime-main.d08b381a.js",
     "runtime-main.js.map": "/finbox-mini-app/static/js/runtime-main.d08b381a.js.map",
-    "static/css/2.92d02543.chunk.css": "/finbox-mini-app/static/css/2.92d02543.chunk.css",
-    "static/js/2.fc78c004.chunk.js": "/finbox-mini-app/static/js/2.fc78c004.chunk.js",
-    "static/js/2.fc78c004.chunk.js.map": "/finbox-mini-app/static/js/2.fc78c004.chunk.js.map",
+    "static/js/2.eef6dce1.chunk.js": "/finbox-mini-app/static/js/2.eef6dce1.chunk.js",
+    "static/js/2.eef6dce1.chunk.js.map": "/finbox-mini-app/static/js/2.eef6dce1.chunk.js.map",
     "index.html": "/finbox-mini-app/index.html",
-    "static/css/2.92d02543.chunk.css.map": "/finbox-mini-app/static/css/2.92d02543.chunk.css.map",
-    "static/css/main.fbef37fa.chunk.css.map": "/finbox-mini-app/static/css/main.fbef37fa.chunk.css.map",
-    "static/js/2.fc78c004.chunk.js.LICENSE.txt": "/finbox-mini-app/static/js/2.fc78c004.chunk.js.LICENSE.txt"
+    "static/css/main.30216797.chunk.css.map": "/finbox-mini-app/static/css/main.30216797.chunk.css.map",
+    "static/js/2.eef6dce1.chunk.js.LICENSE.txt": "/finbox-mini-app/static/js/2.eef6dce1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d08b381a.js",
-    "static/css/2.92d02543.chunk.css",
-    "static/js/2.fc78c004.chunk.js",
-    "static/css/main.fbef37fa.chunk.css",
-    "static/js/main.3b40b7ed.chunk.js"
+    "static/js/2.eef6dce1.chunk.js",
+    "static/css/main.30216797.chunk.css",
+    "static/js/main.741b58d9.chunk.js"
   ]
 }
