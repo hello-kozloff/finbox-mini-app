@@ -1,20 +1,24 @@
 .dashboard-card {
-  background-color: var(--accent);
+  box-shadow: 0px 10px 20px rgba(44, 37, 210, 0.05);
+  background-color: var(--white);
   border-radius: 8px;
-  text-align: center;
   box-sizing: border-box;
-  padding: 48px 12px;
-  align-items: center;
-  display: grid;
-  height: 140px;
+  padding: 12px 16px;
+  flex-direction: column;
+  display: flex;
+  min-height: 102px;
 }
 
 .dashboard-card__subtitle {
-  font-size: 12px;
-  color: rgba(#fff, .8);
+  line-height: 18px;
+  font-size: 13px;
+  color: #001026;
 }
 
 .dashboard-card__title {
-  font-size: 22px;
-  color: #fff;
+  margin-top: 20px;
+  line-height: 28px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #001026;
 }

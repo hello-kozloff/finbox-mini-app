@@ -1,6 +1,7 @@
 import React from 'react';
 import { block } from 'bem-cn';
 import { IContentFixProps } from './types';
+import './styles.scss';
 
 /**
  * The class generator.

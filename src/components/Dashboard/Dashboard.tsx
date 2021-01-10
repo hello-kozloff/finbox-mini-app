@@ -32,11 +32,14 @@ export default function Dashboard(): React.ReactElement {
               <Spinner size="medium" />
             ) : data.value ? (
               <DashboardCard
-                title={`${data.value && getTotal(data.value)} ₽`}
-                subtitle="Дал в долг"
+                title="Полученные займы"
+                subtitle={`${data.value && getTotal(data.value)} ₽`}
               />
             ) : (
-              <DashboardCard subtitle="Вы не давали в долг" />
+              <DashboardCard
+                title="Полученные займы"
+                subtitle="0 ₽"
+              />
             )
           }}
         </FirebaseDatabaseNode>
@@ -46,11 +49,14 @@ export default function Dashboard(): React.ReactElement {
               <Spinner size="medium" />
             ) : data.value ? (
               <DashboardCard
-                title={`${data.value && getTotal(data.value)} ₽`}
-                subtitle="Взял в долг"
+                title="Выданные займы"
+                subtitle={`${data.value && getTotal(data.value)} ₽`}
               />
             ) : (
-              <DashboardCard subtitle="Вы не брали в долг" />
+              <DashboardCard
+                title="Выданные займы"
+                subtitle="0 ₽"
+              />
             )
           }}
         </FirebaseDatabaseNode>

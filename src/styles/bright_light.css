@@ -3,7 +3,7 @@
 * Этот файл сгенерирован автоматически. Не надо править его руками.
 */
 :root {
-  --accent: #0099FF;
+  --accent: #5364FF;
   --action_sheet_action_foreground: #3f8ae0;
   --action_sheet_separator: rgba(0, 0, 0, 0.12);
   --activity_indicator_tint: #aeb7c2;
@@ -13,7 +13,7 @@
   --attach_picker_tab_inactive_background: #f2f3f5;
   --attach_picker_tab_inactive_icon: #818c99;
   --attach_picker_tab_inactive_text: #818c99;
-  --background_content: #ffffff;
+  --background_content: #F2F4F7;
   --background_highlighted: rgba(0, 0, 0, 0.08);
   --background_hover: rgba(0, 0, 0, 0.04);
   --background_keyboard: #e1e3e6;
