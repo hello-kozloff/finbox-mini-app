@@ -8,3 +8,6 @@ export { default as ContentFix } from './ContentFix/ContentFix';
 export type { IContentFixProps } from './ContentFix/types';
 
 export { default as AddButton } from './AddButton/AddButton';
+
+export { default as DebtCard } from './DebtCard/DebtCard';
+export type { IDebtCardProps } from './DebtCard/types';
