@@ -11,3 +11,5 @@ export { default as AddButton } from './AddButton/AddButton';
 
 export { default as DebtCard } from './DebtCard/DebtCard';
 export type { IDebtCardProps } from './DebtCard/types';
+
+export { default as DebtContainer } from './DebtContainer/DebtContainer';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Panel, PanelHeader } from '@vkontakte/vkui';
-import { ContentFix, Dashboard, AddButton } from '../../components';
+import {ContentFix, Dashboard, AddButton, DebtContainer} from '../../components';
 import IPanelProps from "../../types/panelProps";
 
 /**
@@ -16,6 +16,7 @@ export default function AppPanel(props: IPanelProps): React.ReactElement {
       <AddButton onModalShow={props.onShowModal} />
       <ContentFix>
         <Dashboard />
+        <DebtContainer />
       </ContentFix>
     </Panel>
   );

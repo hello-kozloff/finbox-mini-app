@@ -1,0 +1,21 @@
+.debt-container {
+  padding: 0 32px;
+  row-gap: 16px;
+  display: grid;
+}
+
+.debt-container__header {
+  line-height: 28px;
+  font-size: 18px;
+  font-weight: bold;
+
+  button {
+    font: inherit;
+    color: var(--accent);
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: transparent;
+  }
+}
