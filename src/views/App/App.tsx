@@ -17,14 +17,15 @@ import {
   PanelHeaderButton,
   Group,
   FormLayout,
-  FormLayoutGroup,
   FormItem,
   Radio,
   Input,
   Select,
   CustomSelectOption,
-  Avatar
+  Avatar,
+  DatePicker
 } from '@vkontakte/vkui';
+import {DateFormat} from "@vkontakte/vkui/dist/components/DatePicker/DatePicker";
 
 /**
  * The app view.
@@ -36,13 +37,13 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
   const [formState, setFormState] = React.useState<{
     type: string | null;
     summary: string | null;
-    currency: string | null;
     contactId: string | null;
+    date: DateFormat | null;
   }>({
     type: 'lent',
     summary: null,
-    currency: 'RUB',
-    contactId: null
+    contactId: null,
+    date: null
   });
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -95,15 +96,15 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
           right={
             formState.type !== null &&
             formState.summary !== null &&
-            formState.currency !== null &&
             formState.contactId !== null &&
+            formState.date !== null &&
             <FirebaseDatabaseMutation path={`${userId}/${formState.type}`} type="push">
               {({ runMutation }) => (
                 <PanelHeaderButton onClick={async () => {
                   await runMutation({
                     summary: formState.summary,
-                    currency: formState.currency,
-                    contactId: formState.contactId
+                    contactId: formState.contactId,
+                    date: formState.date
                   });
 
                   onCancelModal();
@@ -117,65 +118,44 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
       }>
         <Group>
           <FormLayout>
-            <FormLayoutGroup mode="horizontal">
-              <FormItem>
-                <Radio
-                  name="type"
-                  value="lent"
-                  defaultChecked={formState.type === 'lent' ? true : undefined}
-                  onChange={(e) => {
-                    setFormState({
-                      ...formState,
-                      type: e.target.value
-                    });
-                  }}
-                >Дал в долг</Radio>
-              </FormItem>
-              <FormItem>
-                <Radio
-                  name="type"
-                  value="borrowed"
-                  defaultChecked={formState.type === 'borrowed' ? true : undefined}
-                  onChange={(e) => {
-                    setFormState({
-                      ...formState,
-                      type: e.target.value
-                    });
-                  }}
-                >Взял в долг</Radio>
-              </FormItem>
-            </FormLayoutGroup>
-          </FormLayout>
-          <FormLayout>
-            <FormLayoutGroup mode="horizontal">
-              <FormItem top="Сумма">
-                <Input
-                  defaultValue={formState.summary !== null ? formState.summary : undefined}
-                  placeholder="Введите сумму"
-                  onBlur={(e) => {
-                    setFormState({
-                      ...formState,
-                      summary: e.target.value
-                    });
-                  }}
-                />
-              </FormItem>
-              <FormItem top="Валюта">
-                <Select
-                  placeholder="Валюта"
-                  defaultValue={formState.currency !== null ? formState.currency : undefined}
-                  options={[
-                    { value: 'RUB', label: 'RUB' }
-                  ]}
-                  onChange={(e) => {
-                    setFormState({
-                      ...formState,
-                      currency: e.target.value
-                    });
-                  }}
-                />
-              </FormItem>
-            </FormLayoutGroup>
+            <FormItem>
+              <Radio
+                name="type"
+                value="lent"
+                defaultChecked={formState.type === 'lent' ? true : undefined}
+                onChange={(e) => {
+                  setFormState({
+                    ...formState,
+                    type: e.target.value
+                  });
+                }}
+              >Дал в долг</Radio>
+            </FormItem>
+            <FormItem>
+              <Radio
+                name="type"
+                value="borrowed"
+                defaultChecked={formState.type === 'borrowed' ? true : undefined}
+                onChange={(e) => {
+                  setFormState({
+                    ...formState,
+                    type: e.target.value
+                  });
+                }}
+              >Взял в долг</Radio>
+            </FormItem>
+            <FormItem top="Сумма">
+              <Input
+                defaultValue={formState.summary !== null ? formState.summary : undefined}
+                placeholder="Введите сумму"
+                onBlur={(e) => {
+                  setFormState({
+                    ...formState,
+                    summary: e.target.value
+                  });
+                }}
+              />
+            </FormItem>
           </FormLayout>
           <FormItem top="Контакт">
             <Select
@@ -191,6 +171,16 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
               renderOption={({ option, ...restProps }) => (
                 <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
               )}
+            />
+          </FormItem>
+          <FormItem top="Дата">
+            <DatePicker
+              min={{day: 1, month: 1, year: 1901}}
+              max={{day: 1, month: 1, year: 2006}}
+              onDateChange={(value) => {console.log(value)}}
+              dayPlaceholder="Д"
+              monthPlaceholder="ММ"
+              yearPlaceholder="ГГ"
             />
           </FormItem>
         </Group>
