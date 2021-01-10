@@ -2,6 +2,8 @@ import React from 'react';
 import { block } from 'bem-cn';
 import { IDebtCardProps } from './types';
 import getUserName from "../../utils/getUserName";
+import './styles.scss';
+import {Avatar} from "@vkontakte/vkui";
 
 /**
  * The class generator.
@@ -19,11 +21,7 @@ export default function DebtCard(props: IDebtCardProps): React.ReactElement {
 
   return (
     <div className={debtCard()}>
-      <img
-        src={props.photo_100}
-        alt={userName}
-        className={debtCard('avatar')}
-      />
+      <Avatar src={props.photo_100} size={48} />
       <div className={debtCard('content')}>
         <span className={debtCard('username')}>
           {userName}
