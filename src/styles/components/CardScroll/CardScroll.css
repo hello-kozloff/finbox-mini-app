@@ -4,7 +4,7 @@
 }
 
 .CardScroll .Card {
-  margin-right: 8px;
+  margin-right: 16px;
   flex-shrink: 0;
 }
 
@@ -76,8 +76,8 @@
  */
 
 .Group--card .CardScroll {
-  margin-left: -8px;
-  margin-right: -8px;
+  margin-left: -16px;
+  margin-right: -16px;
 }
 
 .Group--card .CardScroll--l .Card {
@@ -89,9 +89,9 @@
 }
 
 .Group--card .CardScroll:first-child {
-  padding-top: 8px;
+  padding-top: 16px;
 }
 
 .Group--card .CardScroll:last-child {
-  padding-bottom: 8px;
+  padding-bottom: 16px;
 }
