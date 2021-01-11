@@ -31,7 +31,16 @@ export default function Dashboard(): React.ReactElement {
         <FirebaseDatabaseNode path={`${userId}`}>
           {(data) => {
             return data.isLoading ? (
-              <Spinner size="medium" />
+              <>
+                <DashboardCard
+                  title="Полученные займы"
+                  subtitle={<Spinner size="small" />}
+                />
+                <DashboardCard
+                  title="Выданные займы"
+                  subtitle={<Spinner size="small" />}
+                />
+              </>
             ) : data.value ? (
               <>
                 <DashboardCard

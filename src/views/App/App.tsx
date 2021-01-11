@@ -108,7 +108,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
 
   const modal = (
     <ModalRoot activeModal={activeModal} onClose={onCancelModal}>
-      <ModalPage id="add-debt" header={
+      <ModalPage settlingHeight={80} id="add-debt" header={
         <ModalPageHeader
           left={
             <PanelHeaderButton onClick={() => setActiveModal(null)}>
