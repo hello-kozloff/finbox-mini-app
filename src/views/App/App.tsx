@@ -27,12 +27,13 @@ import {
   Avatar,
   DatePicker
 } from '@vkontakte/vkui';
+import {RunMutation} from "@react-firebase/database/dist/components/FirebaseDatabaseMutation";
 
 interface Values {
   type: 'lent' | 'borrowed';
   contactId: string;
   summary: string;
-  returnDate: string;
+  returnDate: any;
 }
 
 /**
@@ -50,7 +51,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
     type: 'lent',
     contactId: '',
     summary: '',
-    returnDate: ''
+    returnDate: null
   }
 
   /**
@@ -88,8 +89,17 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
     return result;
   }
 
-  function onSubmit(values: Values) {
+  async function onSubmit(values: Values, runMutation: RunMutation) {
     console.log(values);
+    await runMutation({
+      type: values.type,
+      contactId: values.contactId,
+      summary: values.summary,
+      returnDate: values.returnDate,
+      createdAt: new Date()
+    }).then(() => {
+      onCancelModal();
+    });
   }
 
   const modal = (
@@ -103,100 +113,92 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
           }
         >Добавить долг</ModalPageHeader>
       }>
-        <Formik initialValues={initialValues} onSubmit={onSubmit}>
-          {({ setFieldValue, values }: FormikProps<Values>) => (
-            <Form>
-              <Group>
-                <FormLayout>
-                  <FormItem>
-                    <Field name="type">
-                      {({ field }: FieldProps) => (
-                        <Radio
-                          {...field}
-                          name="type"
-                          value="lent"
-                        >Дал в долг</Radio>
-                      )}
-                    </Field>
-                  </FormItem>
-                  <FormItem>
-                    <Field name="type">
-                      {({ field }: FieldProps) => (
-                        <Radio
-                          {...field}
-                          name="type"
-                          value="borrowed"
-                        >Взял в долг</Radio>
-                      )}
-                    </Field>
-                  </FormItem>
-                  <FormItem top="Сумма">
-                    <Field name="summary">
-                      {({ field }: FieldProps) => (
-                        <Input
-                          {...field}
-                          placeholder="Введите сумму"
-                        />
-                      )}
-                    </Field>
-                  </FormItem>
-                </FormLayout>
-                <FormItem top="Контакт">
-                  <Field name="contactId">
-                    {({ field }: FieldProps) => (
-                      <Select
-                        {...field}
-                        placeholder="Выберите контакт"
-                        options={createFriendsOptions(props.friends)}
-                        renderOption={({ option, ...restProps }) => (
-                          <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
-                        )}
-                      />
-                    )}
-                  </Field>
-                </FormItem>
-                <FormItem top="Дата возрата">
-                  <Field name="returnDate">
-                    {({ field }: FieldProps) => (
-                      <DatePicker
-                        {...field}
-                        onDateChange={(date) => {
-                          if (!isNaN(date.day) && !isNaN(date.month) && !isNaN(date.year)) {
-                            setFieldValue('returnDate', date);
-                          }
-                        }}
-                        min={{day: 1, month: 1, year: 2021}}
-                        max={{day: 1, month: 1, year: 9999}}
-                        dayPlaceholder="ДД"
-                        monthPlaceholder="ММ"
-                        yearPlaceholder="ГГ"
-                      />
-                    )}
-                  </Field>
-                </FormItem>
-                <FormItem>
-                  <FirebaseDatabaseMutation path={`${userId}/${values.type}`} type="push">
-                    {({runMutation}) => {
-                      return (
-                        <Button type="submit" mode="primary" stretched size="l" onClick={async () => {
-                          console.log(values);
-                          await runMutation({
-                            summary: values.summary,
-                            contactId: values.contactId,
-                            returnDate: values.returnDate,
-                            createdAt: new Date()
-                          });
-                        }}>
+        <FirebaseDatabaseMutation path={`${userId}`} type="push">
+          {({ runMutation }) => {
+            return (
+              <Formik initialValues={initialValues} onSubmit={(values) => onSubmit(values, runMutation)}>
+                {({ setFieldValue, values }: FormikProps<Values>) => (
+                  <Form>
+                    <Group>
+                      <FormLayout>
+                        <FormItem>
+                          <Field name="type">
+                            {({ field }: FieldProps) => (
+                              <Radio
+                                {...field}
+                                name="type"
+                                value="lent"
+                              >Дал в долг</Radio>
+                            )}
+                          </Field>
+                        </FormItem>
+                        <FormItem>
+                          <Field name="type">
+                            {({ field }: FieldProps) => (
+                              <Radio
+                                {...field}
+                                name="type"
+                                value="borrowed"
+                              >Взял в долг</Radio>
+                            )}
+                          </Field>
+                        </FormItem>
+                        <FormItem top="Сумма">
+                          <Field name="summary">
+                            {({ field }: FieldProps) => (
+                              <Input
+                                {...field}
+                                placeholder="Введите сумму"
+                              />
+                            )}
+                          </Field>
+                        </FormItem>
+                      </FormLayout>
+                      <FormItem top="Контакт">
+                        <Field name="contactId">
+                          {({ field }: FieldProps) => (
+                            <Select
+                              {...field}
+                              placeholder="Выберите контакт"
+                              options={createFriendsOptions(props.friends)}
+                              renderOption={({ option, ...restProps }) => (
+                                <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
+                              )}
+                            />
+                          )}
+                        </Field>
+                      </FormItem>
+                      <FormItem top="Дата возрата">
+                        <Field name="returnDate">
+                          {({ field }: FieldProps) => (
+                            <DatePicker
+                              {...field}
+                              onDateChange={(date) => {
+                                if (!isNaN(date.day) && !isNaN(date.month) && !isNaN(date.year)) {
+                                  setFieldValue('returnDate', date);
+                                }
+                              }}
+                              min={{day: 1, month: 1, year: 2021}}
+                              max={{day: 1, month: 1, year: 9999}}
+                              dayPlaceholder="ДД"
+                              monthPlaceholder="ММ"
+                              yearPlaceholder="ГГ"
+                            />
+                          )}
+                        </Field>
+                      </FormItem>
+                      <FormItem>
+                        <Button type="submit" mode="primary" stretched size="l">
                           Добавить
                         </Button>
-                      )
-                    }}
-                  </FirebaseDatabaseMutation>
-                </FormItem>
-              </Group>
-            </Form>
-          )}
-        </Formik>
+                      </FormItem>
+                    </Group>
+                  </Form>
+                )}
+              </Formik>
+            )
+          }}
+        </FirebaseDatabaseMutation>
       </ModalPage>
     </ModalRoot>
   );
