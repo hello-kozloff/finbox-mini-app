@@ -6,5 +6,5 @@ export interface IDebtCardProps {
   photo_100: IFriend['photo_100'];
   summary: string;
   createdAt: string;
-  returnDate: string;
+  returnDate: string | null;
 }

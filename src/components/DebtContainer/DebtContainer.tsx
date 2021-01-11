@@ -69,14 +69,7 @@ function DebtContainer(props: IDebtContainerProps): React.ReactElement {
       <div className={debtContainer('content')}>
         {sortType === 'max-amount' && (
           <>
-            <FirebaseDatabaseNode path={`${userId}/borrowed`}>
-              {(data) => {
-                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => {
-                  return Number(b.summary) - Number(a.summary);
-                }))
-              }}
-            </FirebaseDatabaseNode>
-            <FirebaseDatabaseNode path={`${userId}/lent`}>
+            <FirebaseDatabaseNode path={`${userId}`}>
               {(data) => {
                 return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => {
                   return Number(b.summary) - Number(a.summary);
@@ -87,17 +80,10 @@ function DebtContainer(props: IDebtContainerProps): React.ReactElement {
         )}
         {sortType === 'return-date' && (
           <>
-            <FirebaseDatabaseNode path={`${userId}/borrowed`}>
+            <FirebaseDatabaseNode path={`${userId}`}>
               {(data) => {
                 return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => {
-                  return moment(b.returnDate).diff(moment(a.returnDate))
-                }))
-              }}
-            </FirebaseDatabaseNode>
-            <FirebaseDatabaseNode path={`${userId}/lent`}>
-              {(data) => {
-                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => {
-                  return moment(b.returnDate).diff(moment(a.returnDate))
+                  return moment(a.returnDate).diff(moment(b.returnDate))
                 }))
               }}
             </FirebaseDatabaseNode>

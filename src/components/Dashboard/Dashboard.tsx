@@ -44,10 +44,16 @@ export default function Dashboard(): React.ReactElement {
                 />
               </>
             ) : (
-              <DashboardCard
-                title="Полученные займы"
-                subtitle="0 ₽"
-              />
+              <>
+                <DashboardCard
+                  title="Полученные займы"
+                  subtitle="0 ₽"
+                />
+                <DashboardCard
+                  title="Выданные займы"
+                  subtitle="0 ₽"
+                />
+              </>
             )
           }}
         </FirebaseDatabaseNode>

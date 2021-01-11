@@ -28,6 +28,7 @@ import {
   DatePicker
 } from '@vkontakte/vkui';
 import {RunMutation} from "@react-firebase/database/dist/components/FirebaseDatabaseMutation";
+import moment from 'moment';
 
 interface Values {
   type: 'lent' | 'borrowed';
@@ -89,14 +90,17 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
     return result;
   }
 
+  function pad(n: any) {
+    return (n < 10) ? ("0" + n) : n;
+  }
+
   async function onSubmit(values: Values, runMutation: RunMutation) {
-    console.log(values);
     await runMutation({
       type: values.type,
       contactId: values.contactId,
       summary: values.summary,
-      returnDate: values.returnDate,
-      createdAt: new Date()
+      returnDate: values.returnDate === null ? null : `${pad(values.returnDate.day)}-${pad(values.returnDate.month)}-${values.returnDate.year}`,
+      createdAt: moment().format('DD-MM-YYYY')
     }).then(() => {
       onCancelModal();
     });

@@ -12,7 +12,7 @@ import IPanelProps from "../../types/panelProps";
 export default function AppPanel(props: IPanelProps): React.ReactElement {
   return (
     <Panel id={props.id}>
-      <PanelHeader>Все займы</PanelHeader>
+      <PanelHeader fixed={false}>Все займы</PanelHeader>
       <AddButton onModalShow={props.onShowModal} />
       <ContentFix>
         <Dashboard />

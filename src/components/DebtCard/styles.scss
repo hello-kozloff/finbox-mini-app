@@ -33,4 +33,15 @@
   font-size: 13px;
   color: #616C7A;
   white-space: nowrap;
+
+  &_return {
+    margin-left: 2px;
+    column-gap: 4px;
+    align-items: center;
+    grid-auto-flow: column;
+    display: grid;
+    &:before {
+      content: "→";
+    }
+  }
 }
