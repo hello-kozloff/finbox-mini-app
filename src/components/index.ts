@@ -13,3 +13,5 @@ export { default as DebtCard } from './DebtCard/DebtCard';
 export type { IDebtCardProps } from './DebtCard/types';
 
 export { default as DebtContainer } from './DebtContainer/DebtContainer';
+
+export { default as CatalogItem } from './CatalogItem/CatalogItem';

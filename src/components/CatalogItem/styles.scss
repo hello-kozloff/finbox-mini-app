@@ -1,0 +1,25 @@
+.catalog-item {
+  width: calc(100% - 24px);
+  margin: auto;
+  column-gap: 24px;
+  grid-template-columns: min-content 1fr min-content;
+  align-items: center;
+  grid-auto-flow: column;
+  display: grid;
+  box-sizing: border-box;
+  padding: 16px;
+  background-color: #fff;
+  text-decoration: none;
+  font: inherit;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  color: inherit;
+
+  .Avatar__img {
+    object-fit: cover;
+  }
+}
+
+.catalog-item__value {
+  white-space: nowrap;
+}
