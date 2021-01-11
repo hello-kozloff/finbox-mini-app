@@ -41,6 +41,8 @@ function DebtContainer(props: IDebtContainerProps): React.ReactElement {
           last_name={friend.last_name}
           photo_100={friend.photo_100}
           summary={node.summary}
+          createdAt={node.createdAt}
+          returnDate={node.returnDate}
         />
       ) || <React.Fragment/>
     });
@@ -54,6 +56,7 @@ function DebtContainer(props: IDebtContainerProps): React.ReactElement {
   }
 
   console.log('onCHange');
+  console.log('onCHange123123');
 
   return (
     <div className={debtContainer()}>
@@ -68,12 +71,16 @@ function DebtContainer(props: IDebtContainerProps): React.ReactElement {
           <>
             <FirebaseDatabaseNode path={`${userId}/borrowed`}>
               {(data) => {
-                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => Number(b.summary) - Number(a.summary)))
+                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => {
+                  return Number(b.summary) - Number(a.summary);
+                }))
               }}
             </FirebaseDatabaseNode>
             <FirebaseDatabaseNode path={`${userId}/lent`}>
               {(data) => {
-                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => Number(b.summary) - Number(a.summary)))
+                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => {
+                  return Number(b.summary) - Number(a.summary);
+                }))
               }}
             </FirebaseDatabaseNode>
           </>
@@ -82,12 +89,16 @@ function DebtContainer(props: IDebtContainerProps): React.ReactElement {
           <>
             <FirebaseDatabaseNode path={`${userId}/borrowed`}>
               {(data) => {
-                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => Number(b.summary) - Number(a.summary)))
+                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => {
+                  return moment(b.returnDate).diff(moment(a.returnDate))
+                }))
               }}
             </FirebaseDatabaseNode>
             <FirebaseDatabaseNode path={`${userId}/lent`}>
               {(data) => {
-                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => Number(b.summary) - Number(a.summary)))
+                return data.isLoading ? <Spinner size="medium" /> : data.value && renderDebt(Object.values(data.value).sort((a: any, b: any) => {
+                  return moment(b.returnDate).diff(moment(a.returnDate))
+                }))
               }}
             </FirebaseDatabaseNode>
           </>

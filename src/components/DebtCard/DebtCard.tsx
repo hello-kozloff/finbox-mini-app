@@ -27,8 +27,10 @@ export default function DebtCard(props: IDebtCardProps): React.ReactElement {
           {userName}
         </span>
         <div className={debtCard('datestamp')}>
-          <span className={debtCard('date')}>12.12.2020</span>
-          <span className={debtCard('date')}>20.12.2020</span>
+          <span className={debtCard('date')}>{props.createdAt}</span>
+          {props.returnDate && (
+            <span className={debtCard('date')}>/ {props.returnDate}</span>
+          )}
         </div>
       </div>
       <span className={debtCard('price')}>

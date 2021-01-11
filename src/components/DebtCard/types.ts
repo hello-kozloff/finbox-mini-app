@@ -5,4 +5,6 @@ export interface IDebtCardProps {
   last_name: IFriend['last_name'];
   photo_100: IFriend['photo_100'];
   summary: string;
+  createdAt: string;
+  returnDate: string;
 }

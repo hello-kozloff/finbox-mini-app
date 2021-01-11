@@ -25,7 +25,7 @@ import {
   Avatar,
   DatePicker
 } from '@vkontakte/vkui';
-import {DateFormat} from "@vkontakte/vkui/dist/components/DatePicker/DatePicker";
+import moment, { Moment } from 'moment';
 
 /**
  * The app view.
@@ -38,22 +38,32 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
     type: string | null;
     summary: string | null;
     contactId: string | null;
-    date: DateFormat | null;
+    returnDate: string | null;
   }>({
     type: 'lent',
     summary: null,
     contactId: null,
-    date: null
+    returnDate: null
   });
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const userId = urlParams.get('vk_user_id');
+
+  function resetState() {
+    return setFormState({
+      type: formState.type,
+      summary: null,
+      contactId: null,
+      returnDate: null
+    });
+  }
 
   /**
    * The function show modal.
    * @param modalName
    */
   function onShowModal(modalName: string): void {
+    resetState();
     return setActiveModal(modalName);
   }
 
@@ -97,14 +107,14 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
             formState.type !== null &&
             formState.summary !== null &&
             formState.contactId !== null &&
-            formState.date !== null &&
             <FirebaseDatabaseMutation path={`${userId}/${formState.type}`} type="push">
               {({ runMutation }) => (
                 <PanelHeaderButton onClick={async () => {
                   await runMutation({
                     summary: formState.summary,
                     contactId: formState.contactId,
-                    date: formState.date
+                    returnDate: formState.returnDate,
+                    createdAt: moment().format('DD-MM-YYYY')
                   });
 
                   onCancelModal();
@@ -146,7 +156,6 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
             </FormItem>
             <FormItem top="Сумма">
               <Input
-                defaultValue={formState.summary !== null ? formState.summary : undefined}
                 placeholder="Введите сумму"
                 onBlur={(e) => {
                   setFormState({
@@ -161,7 +170,6 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
             <Select
               placeholder="Выберите контакт"
               options={createFriendsOptions(props.friends)}
-              defaultValue={formState.contactId !== null ? formState.contactId : undefined}
               onChange={(e) => {
                 setFormState({
                   ...formState,
@@ -178,9 +186,10 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
               min={{day: 1, month: 1, year: 1901}}
               max={{day: 1, month: 1, year: 2006}}
               onDateChange={(date) => {
+                console.log(date);
                 setFormState({
                   ...formState,
-                  date
+                  returnDate: moment(`${String(date.day).slice(-2)}-${String(date.month).slice(-2)}-${date.year}`).format('DD-MM-YYYY')
                 });
               }}
               dayPlaceholder="ДД"
