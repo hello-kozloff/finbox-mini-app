@@ -13,11 +13,13 @@ export default function Dashboard(): React.ReactElement {
   const urlParams = new URLSearchParams(queryString);
   const userId = urlParams.get('vk_user_id');
 
-  function getTotal(values: any) {
+  function getTotal(type: string, values: any) {
     let summary = 0;
 
     Object.values(values).forEach((item: any) => {
-      summary = Number(item.summary) + summary;
+      if (item.type === type) {
+        summary = Number(item.summary) + summary;
+      }
     });
 
     return summary;
@@ -26,35 +28,24 @@ export default function Dashboard(): React.ReactElement {
   return (
     <Group mode="plain">
       <CardScroll size="m">
-        <FirebaseDatabaseNode path={`${userId}/borrowed`}>
+        <FirebaseDatabaseNode path={`${userId}`}>
           {(data) => {
             return data.isLoading ? (
               <Spinner size="medium" />
             ) : data.value ? (
-              <DashboardCard
-                title="Полученные займы"
-                subtitle={`${data.value && getTotal(data.value)} ₽`}
-              />
+              <>
+                <DashboardCard
+                  title="Полученные займы"
+                  subtitle={`${data.value && getTotal('borrowed', data.value)} ₽`}
+                />
+                <DashboardCard
+                  title="Выданные займы"
+                  subtitle={`${data.value && getTotal('lent', data.value)} ₽`}
+                />
+              </>
             ) : (
               <DashboardCard
                 title="Полученные займы"
-                subtitle="0 ₽"
-              />
-            )
-          }}
-        </FirebaseDatabaseNode>
-        <FirebaseDatabaseNode path={`${userId}/lent`}>
-          {(data) => {
-            return data.isLoading ? (
-              <Spinner size="medium" />
-            ) : data.value ? (
-              <DashboardCard
-                title="Выданные займы"
-                subtitle={`${data.value && getTotal(data.value)} ₽`}
-              />
-            ) : (
-              <DashboardCard
-                title="Выданные займы"
                 subtitle="0 ₽"
               />
             )
