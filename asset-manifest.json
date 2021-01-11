@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/finbox-mini-app/static/css/main.9fbcf386.chunk.css",
-    "main.js": "/finbox-mini-app/static/js/main.b5bb404e.chunk.js",
-    "main.js.map": "/finbox-mini-app/static/js/main.b5bb404e.chunk.js.map",
+    "main.js": "/finbox-mini-app/static/js/main.ec072925.chunk.js",
+    "main.js.map": "/finbox-mini-app/static/js/main.ec072925.chunk.js.map",
     "runtime-main.js": "/finbox-mini-app/static/js/runtime-main.d08b381a.js",
     "runtime-main.js.map": "/finbox-mini-app/static/js/runtime-main.d08b381a.js.map",
-    "static/js/2.5e63a6aa.chunk.js": "/finbox-mini-app/static/js/2.5e63a6aa.chunk.js",
-    "static/js/2.5e63a6aa.chunk.js.map": "/finbox-mini-app/static/js/2.5e63a6aa.chunk.js.map",
+    "static/js/2.dc45c74a.chunk.js": "/finbox-mini-app/static/js/2.dc45c74a.chunk.js",
+    "static/js/2.dc45c74a.chunk.js.map": "/finbox-mini-app/static/js/2.dc45c74a.chunk.js.map",
     "index.html": "/finbox-mini-app/index.html",
     "static/css/main.9fbcf386.chunk.css.map": "/finbox-mini-app/static/css/main.9fbcf386.chunk.css.map",
-    "static/js/2.5e63a6aa.chunk.js.LICENSE.txt": "/finbox-mini-app/static/js/2.5e63a6aa.chunk.js.LICENSE.txt"
+    "static/js/2.dc45c74a.chunk.js.LICENSE.txt": "/finbox-mini-app/static/js/2.dc45c74a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d08b381a.js",
-    "static/js/2.5e63a6aa.chunk.js",
+    "static/js/2.dc45c74a.chunk.js",
     "static/css/main.9fbcf386.chunk.css",
-    "static/js/main.b5bb404e.chunk.js"
+    "static/js/main.ec072925.chunk.js"
   ]
 }
