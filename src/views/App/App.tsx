@@ -1,5 +1,5 @@
 import React from 'react';
-import {Formik, Form, Field, FieldProps, FormikProps} from 'formik';
+import {Formik, Form, Field, FieldProps, FormikProps, FormikErrors} from 'formik';
 import { AppPanel } from "../../panels";
 import { ViewProps } from "@vkontakte/vkui/dist/components/View/View";
 import { PanelProps } from "@vkontakte/vkui/dist/components/Panel/Panel";
@@ -25,15 +25,15 @@ import {
   Select,
   CustomSelectOption,
   Avatar,
-  DatePicker
+  DatePicker, Text
 } from '@vkontakte/vkui';
 import {RunMutation} from "@react-firebase/database/dist/components/FirebaseDatabaseMutation";
 import moment from 'moment';
 
 interface Values {
   type: 'lent' | 'borrowed';
-  contactId: string;
-  summary: string;
+  contactId: string | null;
+  summary: string | null;
   returnDate: any;
 }
 
@@ -50,8 +50,8 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
 
   const initialValues: Values = {
     type: 'lent',
-    contactId: '',
-    summary: '',
+    contactId: null,
+    summary: null,
     returnDate: null
   }
 
@@ -75,9 +75,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
    * @param friends
    */
   function createFriendsOptions(friends: IFriendsState) {
-    const result: { value: number; label: string; avatar: string; }[] = [
-      { value: 141231, label: 'cwercwe',  avatar: 'rtnrtnrt' }
-    ];
+    const result: { value: number; label: string; avatar: string; }[] = [];
 
     friends.forEach((friend) => {
       result.push({
@@ -94,6 +92,18 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
     return (n < 10) ? ("0" + n) : n;
   }
 
+  function validate(values: Values) {
+    const errors: FormikErrors<Values> = {};
+
+    if (!values.summary) {
+      errors.summary = 'Введите число';
+    } else if (!values.contactId) {
+      errors.contactId = 'Выберите контакт';
+    }
+
+    return errors;
+  }
+
   async function onSubmit(values: Values, runMutation: RunMutation) {
     await runMutation({
       type: values.type,
@@ -108,7 +118,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
 
   const modal = (
     <ModalRoot activeModal={activeModal} onClose={onCancelModal}>
-      <ModalPage settlingHeight={80} id="add-debt" header={
+      <ModalPage settlingHeight={100} id="add-debt" header={
         <ModalPageHeader
           left={
             <PanelHeaderButton onClick={() => setActiveModal(null)}>
@@ -120,8 +130,8 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
         <FirebaseDatabaseMutation path={`${userId}`} type="push">
           {({ runMutation }) => {
             return (
-              <Formik initialValues={initialValues} onSubmit={(values) => onSubmit(values, runMutation)}>
-                {({ setFieldValue, values }: FormikProps<Values>) => (
+              <Formik initialValues={initialValues} onSubmit={(values) => onSubmit(values, runMutation)} validate={validate}>
+                {({ setFieldValue }: FormikProps<Values>) => (
                   <Form>
                     <Group>
                       <FormLayout>
@@ -132,6 +142,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                                 {...field}
                                 name="type"
                                 value="lent"
+                                defaultChecked
                               >Дал в долг</Radio>
                             )}
                           </Field>
@@ -149,26 +160,32 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                         </FormItem>
                         <FormItem top="Сумма">
                           <Field name="summary">
-                            {({ field }: FieldProps) => (
-                              <Input
-                                {...field}
-                                placeholder="Введите сумму"
-                              />
+                            {({ field, meta }: FieldProps) => (
+                              <div>
+                                <Input
+                                  {...field}
+                                  placeholder="Введите сумму"
+                                />
+                                {meta.error && <Text weight="medium" color="red">{meta.error}</Text>}
+                              </div>
                             )}
                           </Field>
                         </FormItem>
                       </FormLayout>
                       <FormItem top="Контакт">
                         <Field name="contactId">
-                          {({ field }: FieldProps) => (
-                            <Select
-                              {...field}
-                              placeholder="Выберите контакт"
-                              options={createFriendsOptions(props.friends)}
-                              renderOption={({ option, ...restProps }) => (
-                                <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
-                              )}
-                            />
+                          {({ field, meta }: FieldProps) => (
+                            <div>
+                              <Select
+                                {...field}
+                                placeholder="Выберите контакт"
+                                options={createFriendsOptions(props.friends)}
+                                renderOption={({ option, ...restProps }) => (
+                                  <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
+                                )}
+                              />
+                              {meta.error && <Text weight="medium" color="red">{meta.error}</Text>}
+                            </div>
                           )}
                         </Field>
                       </FormItem>

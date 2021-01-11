@@ -35,16 +35,16 @@
 }
 
 .ModalRoot--ios .ModalRoot__viewport {
-  top: var(--safe-area-inset-top);
+  /*top: var(--safe-area-inset-top);*/
 }
 
 .ModalRoot--vkapps.ModalRoot--android .ModalRoot__viewport,
 .ModalRoot--vkapps.ModalRoot--vkcom .ModalRoot__viewport {
-  top: var(--panelheader_height_android);
+  /*top: var(--panelheader_height_android);*/
 }
 
 .ModalRoot--vkapps.ModalRoot--ios .ModalRoot__viewport {
-  top: calc(var(--safe-area-inset-top) + var(--panelheader_height_ios));
+  /*top: calc(var(--safe-area-inset-top) + var(--panelheader_height_ios));*/
 }
 
 .ModalRoot__modal {
