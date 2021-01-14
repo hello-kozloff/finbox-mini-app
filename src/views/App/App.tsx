@@ -158,22 +158,15 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                             )}
                           </Field>
                         </FormItem>
-                        <FormItem top="Сумма">
-                          <Field name="summary">
-                            {({ field, meta }: FieldProps) => (
-                              <div>
-                                <Input
-                                  {...field}
-                                  type="number"
-                                  defaultValue={100}
-                                  pattern="[0-9]*"
-                                  placeholder="Введите сумму"
-                                />
-                                {meta.error && <Text weight="medium" color="red">{meta.error}</Text>}
-                              </div>
-                            )}
-                          </Field>
-                        </FormItem>
+                        <Field name="summary">
+                          {({ field, meta }: FieldProps) => (
+                            <FormItem top="Сумма" bottom={meta.touched && meta.error && (
+                              <Text weight="medium" color="red">{meta.error}</Text>
+                            )}>
+                              <Input{...field} type="number" />
+                            </FormItem>
+                          )}
+                        </Field>
                       </FormLayout>
                       <FormItem top="Контакт">
                         <Field name="contactId">
