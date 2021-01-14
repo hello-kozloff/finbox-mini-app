@@ -164,6 +164,9 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                               <div>
                                 <Input
                                   {...field}
+                                  type="number"
+                                  defaultValue={100}
+                                  pattern="[0-9]*"
                                   placeholder="Введите сумму"
                                 />
                                 {meta.error && <Text weight="medium" color="red">{meta.error}</Text>}
@@ -199,8 +202,8 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                                   setFieldValue('returnDate', date);
                                 }
                               }}
-                              min={{day: 1, month: 1, year: 2021}}
-                              max={{day: 1, month: 1, year: 9999}}
+                              min={{day: new Date().getDay(), month: new Date().getMonth(), year: new Date().getFullYear()}}
+                              max={{day: new Date().getDay(), month: new Date().getMonth(), year: new Date().getFullYear() + 1000}}
                               dayPlaceholder="ДД"
                               monthPlaceholder="ММ"
                               yearPlaceholder="ГГ"
