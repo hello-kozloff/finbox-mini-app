@@ -17,7 +17,6 @@ import {
   ModalPage,
   ModalPageHeader,
   PanelHeaderButton,
-  Group,
   FormItem,
   Radio,
   Input,
@@ -132,81 +131,79 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
               <Formik initialValues={initialValues} onSubmit={(values) => onSubmit(values, runMutation)} validate={validate}>
                 {({ setFieldValue }: FormikProps<Values>) => (
                   <Form>
-                    <Group>
-                      <FormItem>
-                        <Field name="type">
-                          {({ field }: FieldProps) => (
-                            <Radio
-                              {...field}
-                              name="type"
-                              value="lent"
-                              defaultChecked
-                            >Дал в долг</Radio>
-                          )}
-                        </Field>
-                      </FormItem>
-                      <FormItem>
-                        <Field name="type">
-                          {({ field }: FieldProps) => (
-                            <Radio
-                              {...field}
-                              name="type"
-                              value="borrowed"
-                            >Взял в долг</Radio>
-                          )}
-                        </Field>
-                      </FormItem>
-                      <Field name="summary">
-                        {({ field, meta }: FieldProps) => (
-                          <FormItem top="Сумма" bottom={meta.touched && meta.error && (
-                            <Text weight="medium" color="red">{meta.error}</Text>
-                          )}>
-                            <Input{...field} type="number" />
-                          </FormItem>
+                    <FormItem>
+                      <Field name="type">
+                        {({ field }: FieldProps) => (
+                          <Radio
+                            {...field}
+                            name="type"
+                            value="lent"
+                            defaultChecked
+                          >Дал в долг</Radio>
                         )}
                       </Field>
-                      <FormItem top="Контакт">
-                        <Field name="contactId">
-                          {({ field, meta }: FieldProps) => (
-                            <div>
-                              <Select
-                                {...field}
-                                placeholder="Выберите контакт"
-                                options={createFriendsOptions(props.friends)}
-                                renderOption={({ option, ...restProps }) => (
-                                  <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
-                                )}
-                              />
-                              {meta.error && <Text weight="medium" color="red">{meta.error}</Text>}
-                            </div>
-                          )}
-                        </Field>
-                      </FormItem>
-                      <FormItem top="Дата возрата">
-                        <Field name="returnDate">
-                          {({ field }: FieldProps) => (
-                            <DatePicker
+                    </FormItem>
+                    <FormItem>
+                      <Field name="type">
+                        {({ field }: FieldProps) => (
+                          <Radio
+                            {...field}
+                            name="type"
+                            value="borrowed"
+                          >Взял в долг</Radio>
+                        )}
+                      </Field>
+                    </FormItem>
+                    <Field name="summary">
+                      {({ field, meta }: FieldProps) => (
+                        <FormItem top="Сумма" bottom={meta.touched && meta.error && (
+                          <Text weight="medium" color="red">{meta.error}</Text>
+                        )}>
+                          <Input{...field} type="number" />
+                        </FormItem>
+                      )}
+                    </Field>
+                    <FormItem top="Контакт">
+                      <Field name="contactId">
+                        {({ field, meta }: FieldProps) => (
+                          <div>
+                            <Select
                               {...field}
-                              onDateChange={(date) => {
-                                if (!isNaN(date.day) && !isNaN(date.month) && !isNaN(date.year)) {
-                                  setFieldValue('returnDate', date);
-                                }
-                              }}
-                              min={{day: new Date().getDay(), month: new Date().getMonth(), year: new Date().getFullYear()}}
-                              max={{day: new Date().getDay(), month: new Date().getMonth(), year: new Date().getFullYear() + 1000}}
-                              dayPlaceholder="ДД"
-                              monthPlaceholder="ММ"
-                              yearPlaceholder="ГГ"
+                              placeholder="Выберите контакт"
+                              options={createFriendsOptions(props.friends)}
+                              renderOption={({ option, ...restProps }) => (
+                                <CustomSelectOption {...restProps} before={<Avatar size={24} src={option.avatar} />} />
+                              )}
                             />
-                          )}
-                        </Field>
-                      </FormItem>
-                      <FormItem>
-                        <Button type="submit" mode="primary" stretched size="l">
-                          Добавить
-                        </Button>
-                      </FormItem>
-                    </Group>
+                            {meta.error && <Text weight="medium" color="red">{meta.error}</Text>}
+                          </div>
+                        )}
+                      </Field>
+                    </FormItem>
+                    <FormItem top="Дата возрата">
+                      <Field name="returnDate">
+                        {({ field }: FieldProps) => (
+                          <DatePicker
+                            {...field}
+                            onDateChange={(date) => {
+                              if (!isNaN(date.day) && !isNaN(date.month) && !isNaN(date.year)) {
+                                setFieldValue('returnDate', date);
+                              }
+                            }}
+                            min={{day: new Date().getDay(), month: new Date().getMonth(), year: new Date().getFullYear()}}
+                            max={{day: new Date().getDay(), month: new Date().getMonth(), year: new Date().getFullYear() + 1000}}
+                            dayPlaceholder="ДД"
+                            monthPlaceholder="ММ"
+                            yearPlaceholder="ГГ"
+                          />
+                        )}
+                      </Field>
+                    </FormItem>
+                    <FormItem>
+                      <Button type="submit" mode="primary" stretched size="l">
+                        Добавить
+                      </Button>
+                    </FormItem>
                   </Form>
                 )}
               </Formik>
