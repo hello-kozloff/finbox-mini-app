@@ -18,7 +18,6 @@ import {
   ModalPageHeader,
   PanelHeaderButton,
   Group,
-  FormLayout,
   FormItem,
   Radio,
   Input,
@@ -134,40 +133,38 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
                 {({ setFieldValue }: FormikProps<Values>) => (
                   <Form>
                     <Group>
-                      <FormLayout>
-                        <FormItem>
-                          <Field name="type">
-                            {({ field }: FieldProps) => (
-                              <Radio
-                                {...field}
-                                name="type"
-                                value="lent"
-                                defaultChecked
-                              >Дал в долг</Radio>
-                            )}
-                          </Field>
-                        </FormItem>
-                        <FormItem>
-                          <Field name="type">
-                            {({ field }: FieldProps) => (
-                              <Radio
-                                {...field}
-                                name="type"
-                                value="borrowed"
-                              >Взял в долг</Radio>
-                            )}
-                          </Field>
-                        </FormItem>
-                        <Field name="summary">
-                          {({ field, meta }: FieldProps) => (
-                            <FormItem top="Сумма" bottom={meta.touched && meta.error && (
-                              <Text weight="medium" color="red">{meta.error}</Text>
-                            )}>
-                              <Input{...field} type="number" />
-                            </FormItem>
+                      <FormItem>
+                        <Field name="type">
+                          {({ field }: FieldProps) => (
+                            <Radio
+                              {...field}
+                              name="type"
+                              value="lent"
+                              defaultChecked
+                            >Дал в долг</Radio>
                           )}
                         </Field>
-                      </FormLayout>
+                      </FormItem>
+                      <FormItem>
+                        <Field name="type">
+                          {({ field }: FieldProps) => (
+                            <Radio
+                              {...field}
+                              name="type"
+                              value="borrowed"
+                            >Взял в долг</Radio>
+                          )}
+                        </Field>
+                      </FormItem>
+                      <Field name="summary">
+                        {({ field, meta }: FieldProps) => (
+                          <FormItem top="Сумма" bottom={meta.touched && meta.error && (
+                            <Text weight="medium" color="red">{meta.error}</Text>
+                          )}>
+                            <Input{...field} type="number" />
+                          </FormItem>
+                        )}
+                      </Field>
                       <FormItem top="Контакт">
                         <Field name="contactId">
                           {({ field, meta }: FieldProps) => (
