@@ -4,14 +4,12 @@ import { FirebaseDatabaseMutation } from '@react-firebase/database';
 import * as formik from 'formik';
 import * as ui from '@vkontakte/vkui';
 import * as icons from "@vkontakte/icons";
-import { getCurrentUserId } from '../../utils';
+import { getCurrentUserId, getUserName } from '../../utils';
 import { getFriendsState } from '../../store/reducers/friends';
 import IAddDebtModalProps, { IAddDebtValues, IFriendOption, DebtType } from './types';
 import { IState } from '../../store/types/state';
 
 function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
-  const userId = getCurrentUserId();
-
   /**
    * The modal header part.
    */
@@ -60,23 +58,18 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
    * The function return friends options.
    */
   function getFriendsOptions(): IFriendOption[] {
-    const result: IFriendOption[] = [];
-
-    props.friends.forEach((friend) => {
-      result.push({
-        id: friend.id,
-        first_name: friend.first_name,
-        last_name: friend.last_name,
+    return props.friends.map((friend) => {
+      return {
+        value: friend.id,
+        label: getUserName(friend.first_name, friend.last_name),
         photo_100: friend.photo_100
-      });
+      }
     });
-
-    return result;
   }
 
   return (
     <ui.ModalPage id={props.id} header={header}>
-      <FirebaseDatabaseMutation path={userId || '/'} type="push">
+      <FirebaseDatabaseMutation path={getCurrentUserId() || '/'} type="push">
         {() => (
           <formik.Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
             <formik.Form>
