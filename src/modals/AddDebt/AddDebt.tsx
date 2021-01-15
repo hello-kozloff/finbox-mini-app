@@ -85,7 +85,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
               <formik.Form>
                 <formik.Field name="type">
                   {({ field, meta }: formik.FieldProps) => (
-                    <ui.FormItem top="Тип долга" bottom={meta.touched && meta.error}>
+                    <ui.FormItem top="Тип долга*" bottom={meta.touched && meta.error}>
                       <ui.Radio {...field} value={DebtType.borrowed}>
                         Дал в долг
                       </ui.Radio>
@@ -97,14 +97,14 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                 </formik.Field>
                 <formik.Field name="sum">
                   {({ field, meta }: formik.FieldProps) => (
-                    <ui.FormItem top="Сумма долга(₽)" bottom={meta.touched && meta.error}>
+                    <ui.FormItem top="Сумма*" bottom={meta.touched && meta.error}>
                       <ui.Input {...field} type="number" />
                     </ui.FormItem>
                   )}
                 </formik.Field>
                 <formik.Field name="friendId">
                   {({ field, meta }: formik.FieldProps) => (
-                    <ui.FormItem top="Выберите друга" bottom={meta.touched && meta.error}>
+                    <ui.FormItem top="Выберите друга*" bottom={meta.touched && meta.error}>
                       <ui.Select
                         {...field}
                         options={getFriendsOptions()}
