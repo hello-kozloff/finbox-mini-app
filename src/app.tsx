@@ -1,4 +1,5 @@
 import React from 'react';
+import bridge from '@vkontakte/vk-bridge';
 import firebase from 'firebase';
 import config from './firebase/config';
 import { FirebaseDatabaseProvider } from '@react-firebase/database';
@@ -12,6 +13,17 @@ import Router from './router';
  * @constructor
  */
 export default function App(): React.ReactElement {
+  React.useEffect(() => {
+    bridge.subscribe(({ detail: { type, data }}) => {
+      if (type === 'VKWebAppUpdateConfig') {
+        const schemeAttribute = document.createAttribute('scheme');
+        //@ts-ignore
+        schemeAttribute.value = data.scheme ? data.scheme : 'client_light';
+        document.body.attributes.setNamedItem(schemeAttribute);
+      }
+    });
+  }, []);
+
   return (
     <FirebaseDatabaseProvider firebase={firebase} {...config}>
       <Provider store={store}>
