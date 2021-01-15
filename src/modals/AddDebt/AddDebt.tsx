@@ -95,7 +95,21 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
               <formik.Field name="friendId">
                 {({ field }: formik.FieldProps) => (
                   <ui.FormItem top="Выберите друга">
-                    <ui.Select{...field} options={getFriendsOptions()} />
+                    <ui.Select
+                      {...field}
+                      options={getFriendsOptions()}
+                      renderOption={({ option, ...restProps }) => (
+                        <ui.CustomSelectOption
+                          {...restProps}
+                          before={(
+                            <ui.Avatar
+                              src={option.photo_100}
+                              size={24}
+                            />
+                          )}
+                        />
+                      )}
+                    />
                   </ui.FormItem>
                 )}
               </formik.Field>
