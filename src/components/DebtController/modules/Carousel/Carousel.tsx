@@ -50,7 +50,7 @@ export default class DebtCarousel extends React.Component<IDebtCarousel> {
           <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
             {(data) => (
               <DashboardCard
-                title="Полученные займы"
+                title="Выданные займы"
                 subtitle={data.isLoading ? <Spinner size="regular" /> : getTotalValue(DebtType.borrowed, data)}
               />
             )}
@@ -60,7 +60,7 @@ export default class DebtCarousel extends React.Component<IDebtCarousel> {
           <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
             {(data) => (
               <DashboardCard
-                title="Выданные займы"
+                title="Полученные займы"
                 subtitle={data.isLoading ? <Spinner size="regular" /> : getTotalValue(DebtType.lent, data)}
               />
             )}

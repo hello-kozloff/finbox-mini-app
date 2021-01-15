@@ -87,7 +87,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
           {index === 1 && sortType === SortType.ByMaximumSum && (
             <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
               {(data) => {
-                return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
+                return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.lent, Object.values(data.value).sort((a: any, b: any) => {
                   return Number(b.sum) - Number(a.sum);
                 }))
               }}
@@ -96,7 +96,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
           {index === 1 && sortType === SortType.ByExpirationDate && (
             <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
               {(data) => {
-                return data.isLoading ? <Spinner size="medium" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
+                return data.isLoading ? <Spinner size="medium" /> : data.value && renderCard(DebtType.lent, Object.values(data.value).sort((a: any, b: any) => {
                   return moment(new Date(a.expirationDate)).unix() - moment(new Date(b.expirationDate)).unix()
                 }))
               }}
