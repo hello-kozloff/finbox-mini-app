@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
+import moment from 'moment';
 import * as formik from 'formik';
 import * as ui from '@vkontakte/vkui';
 import * as icons from "@vkontakte/icons";
@@ -132,14 +133,14 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                       <ui.DatePicker
                         {...field}
                         min={{
-                          day: new Date().getDay(),
-                          month: new Date().getMonth(),
-                          year: new Date().getFullYear()
+                          day: Number(moment().format('D')),
+                          month: Number(moment().format('M')),
+                          year: Number(moment().format('YYYY'))
                         }}
                         max={{
-                          day: new Date().getDay(),
-                          month: new Date().getMonth(),
-                          year: new Date().getFullYear() + 100
+                          day: Number(moment().format('D')),
+                          month: Number(moment().format('M')),
+                          year: Number(moment().format('YYYY')) + 1000
                         }}
                         onDateChange={(date) => {
                           return setFieldValue(field.name, date);
