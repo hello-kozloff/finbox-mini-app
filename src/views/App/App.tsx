@@ -35,7 +35,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
 
   const modal = (
     <ModalRoot activeModal={activeModal} onClose={onCancelModal}>
-      <AddDebtModal id="add-debt" />
+      <AddDebtModal id="add-debt" dynamicContentHeight />
     </ModalRoot>
   );
 
