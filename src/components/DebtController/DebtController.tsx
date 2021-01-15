@@ -5,7 +5,6 @@ import {Spinner} from '@vkontakte/vkui';
 import {DebtCarousel} from './modules';
 import {getCurrentUserId} from "../../utils";
 import IDebtControllerProps, {SortType} from './types';
-import {FirebaseDatabaseNodeChildFunctionProps} from "@react-firebase/database/dist/types";
 import {DebtType} from "../../modals/AddDebt/types";
 import {connect} from "react-redux";
 import {IState} from "../../store/types/state";
@@ -29,28 +28,27 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
     }
   }
 
-  function renderCard(type: DebtType, value: FirebaseDatabaseNodeChildFunctionProps['value']) {
-    const cards: React.ReactNodeArray = [];
-
-    if (value !== null) {
-      Object.values(value).forEach((node: any) => {
-        if (node.type === type) {
-          const friend = props.friends.find((friend) => friend.id === node.friendId);
-          return friend && cards.push(
-            <DebtCard
-              first_name={friend.first_name}
-              last_name={friend.last_name}
-              photo_100={friend.photo_100}
-              sum={node.sum}
-              createdAt={node.createdAt}
-              expirationDate={node.expirationDate}
-            />
-          )
-        }
-      });
-    }
-
-    return <div>{cards}</div>
+  /**
+   * The function render card.
+   * @param type
+   * @param data
+   */
+  function renderCard(type: DebtType, data: any) {
+    return data.map((node: any) => {
+      if (type === node.type) {
+        const friend = props.friends.find((friend) => friend.id === node.friendId);
+        return friend ? (
+          <DebtCard
+            first_name={friend.first_name}
+            last_name={friend.last_name}
+            photo_100={friend.photo_100}
+            sum={node.sum}
+            createdAt={node.createdAt}
+            expirationDate={node.createdAt}
+          />
+        ) : <React.Fragment/>;
+      } else return <React.Fragment />;
+    });
   }
 
   return (
@@ -70,30 +68,38 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
           {index === 0 && (
             sortType === SortType.ByMaximumSum ? (
               <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-                {(data) => (
-                  data.isLoading ? <Spinner size="regular" /> : renderCard(DebtType.borrowed, data.value)
-                )}
+                {(data) => {
+                  return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
+                    return Number(b.sum) - Number(a.sum);
+                  }))
+                }}
               </FirebaseDatabaseNode>
             ) : (
               <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-                {(data) => (
-                  data.isLoading ? <Spinner size="regular" /> : renderCard(DebtType.borrowed, data.value)
-                )}
+                {(data) => {
+                  return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
+                    return Number(b.sum) - Number(a.sum);
+                  }))
+                }}
               </FirebaseDatabaseNode>
             )
           )}
           {index === 1 && (
             sortType === SortType.ByMaximumSum ? (
               <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-                {(data) => (
-                  data.isLoading ? <Spinner size="regular" /> : renderCard(DebtType.lent, data.value)
-                )}
+                {(data) => {
+                  return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.lent, Object.values(data.value).sort((a: any, b: any) => {
+                    return Number(b.sum) - Number(a.sum);
+                  }))
+                }}
               </FirebaseDatabaseNode>
             ) : (
               <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-                {(data) => (
-                  data.isLoading ? <Spinner size="regular" /> : renderCard(DebtType.lent, data.value)
-                )}
+                {(data) => {
+                  return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.lent, Object.values(data.value).sort((a: any, b: any) => {
+                    return Number(b.sum) - Number(a.sum);
+                  }))
+                }}
               </FirebaseDatabaseNode>
             )
           )}
