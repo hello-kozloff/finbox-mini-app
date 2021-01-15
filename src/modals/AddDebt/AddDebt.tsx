@@ -130,4 +130,4 @@ const mapStateToProps = (state: IState) => ({
   friends: getFriendsState(state)
 });
 
-export default connect(mapStateToProps)(AddDebtModal);
+export default connect(mapStateToProps)(ui.withModalRootContext(AddDebtModal));
