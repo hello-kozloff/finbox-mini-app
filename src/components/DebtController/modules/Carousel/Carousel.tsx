@@ -4,14 +4,19 @@ import { DashboardCard } from '../../../Dashboard/modules';
 
 export default function DebtCarousel(): React.ReactElement {
   const options: FlickityOptions = {
+    cellAlign: 'left',
     prevNextButtons: false,
     pageDots: false
   };
 
   return (
     <Flickity options={options}>
-      <DashboardCard title="Полученные займы" subtitle="" />
-      <DashboardCard title="Выданные займы" subtitle="" />
+      <div className="carousel-cell">
+        <DashboardCard title="Полученные займы" subtitle="" />
+      </div>
+      <div className="carousel-cell">
+        <DashboardCard title="Выданные займы" subtitle="" />
+      </div>
     </Flickity>
   );
 }
