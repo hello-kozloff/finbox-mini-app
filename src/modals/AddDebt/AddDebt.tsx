@@ -100,7 +100,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                 <formik.Field name="sum">
                   {({ field, meta }: formik.FieldProps) => (
                     <ui.FormItem top="Сумма*" bottom={meta.touched && meta.error}>
-                      <ui.Input {...field} type="number" />
+                      <ui.Input {...field} type="number" min={1} />
                     </ui.FormItem>
                   )}
                 </formik.Field>
