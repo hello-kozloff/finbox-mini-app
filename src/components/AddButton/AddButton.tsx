@@ -2,6 +2,7 @@ import React from "react";
 import { Icon24Add } from '@vkontakte/icons';
 import { block } from 'bem-cn';
 import { IAddButtonProps } from './types';
+import { AppModal } from '../../views/App/types';
 import './styles.scss';
 
 /**
@@ -16,7 +17,7 @@ const addButton = block('add-button');
  */
 export default function AddButton(props: IAddButtonProps): React.ReactElement {
   return (
-    <button type="button" className={addButton()} onClick={() => props.onModalShow && props.onModalShow('add-debt')}>
+    <button type="button" className={addButton()} onClick={() => props.onModalShow && props.onModalShow(AppModal.AddDebt)}>
       <Icon24Add color="#fff" />
     </button>
   );

@@ -9,6 +9,7 @@ import {getFriendsState} from "../../store/reducers/friends";
 import {IFriendsState} from "../../store/reducers/friends/types";
 import { View, ModalRoot } from '@vkontakte/vkui';
 import { AddDebtModal } from '../../modals';
+import { AppModal } from './types';
 
 /**
  * The app view.
@@ -35,7 +36,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
 
   const modal = (
     <ModalRoot activeModal={activeModal} onClose={onCancelModal}>
-      <AddDebtModal id="add-debt" onCancelModal={onCancelModal} dynamicContentHeight />
+      <AddDebtModal id={AppModal.AddDebt} onCancelModal={onCancelModal} dynamicContentHeight />
     </ModalRoot>
   );
 
