@@ -76,12 +76,16 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
               <formik.Field name="type">
                 {({ field }: formik.FieldProps) => (
                   <ui.FormItem top="Тип долга">
-                    <ui.Radio {...field} value={DebtType.borrowed}>
-                      Дал в долг
-                    </ui.Radio>
-                    <ui.Radio {...field} value={DebtType.lent}>
-                      Взял в долг
-                    </ui.Radio>
+                    <ui.Radio
+                      {...field}
+                      value={DebtType.borrowed}
+                      defaultChecked={initialValues.type === DebtType.borrowed}
+                    >Дал в долг</ui.Radio>
+                    <ui.Radio
+                      {...field}
+                      value={DebtType.lent}
+                      defaultChecked={initialValues.type === DebtType.lent}
+                    >Взял в долг</ui.Radio>
                   </ui.FormItem>
                 )}
               </formik.Field>
