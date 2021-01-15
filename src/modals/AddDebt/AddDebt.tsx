@@ -99,6 +99,13 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                   </ui.FormItem>
                 )}
               </formik.Field>
+              <formik.Field name="friendId">
+                {({ field }: formik.FieldProps) => (
+                  <ui.FormItem top="Выберите друга">
+                    <ui.Select{...field} options={getFriendsOptions()} />
+                  </ui.FormItem>
+                )}
+              </formik.Field>
             </formik.Form>
           </formik.Formik>
         )}
