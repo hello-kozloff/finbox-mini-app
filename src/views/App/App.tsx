@@ -1,15 +1,15 @@
 import React from 'react';
-import { AppPanel } from "../../panels";
+import { connect } from "react-redux";
+import { View, ModalRoot } from '@vkontakte/vkui';
 import { ViewProps } from "@vkontakte/vkui/dist/components/View/View";
 import { PanelProps } from "@vkontakte/vkui/dist/components/Panel/Panel";
-import IModal from "../../types/modal";
-import {connect} from "react-redux";
-import {IState} from "../../store/types/state";
-import {getFriendsState} from "../../store/reducers/friends";
-import {IFriendsState} from "../../store/reducers/friends/types";
-import { View, ModalRoot } from '@vkontakte/vkui';
+import { getFriendsState } from "../../store/reducers/friends";
+import { AppPanel } from "../../panels";
 import { AddDebtModal } from '../../modals';
+import { IState } from "../../store/types/state";
+import { IFriendsState } from "../../store/reducers/friends/types";
 import { AppModal } from './types';
+import IModal from "../../types/modal";
 
 /**
  * The app view.
