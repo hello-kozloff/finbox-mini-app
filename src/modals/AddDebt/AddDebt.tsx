@@ -69,7 +69,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
   }
 
   return (
-    <ui.ModalPage id={props.id} header={header} dynamicContentHeight>
+    <ui.ModalPage id={props.id} header={header} dynamicContentHeight={props.dynamicContentHeight}>
       <FirebaseDatabaseMutation path={getCurrentUserId() || '/'} type="push">
         {() => (
           <formik.Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
