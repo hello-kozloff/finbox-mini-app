@@ -47,8 +47,8 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
   async function onSubmit(values: IAddDebtValues, runMutation: RunMutation) {
     await runMutation({
       ...values,
-      createdAt: moment().format('DD-MM-YYYY'),
-      expirationDate: values.expirationDate && moment(new Date(values.expirationDate.year, values.expirationDate.month - 1, values.expirationDate.day)).format('DD-MM-YYYY')
+      createdAt: moment().format('YYYY-MM-DD'),
+      expirationDate: values.expirationDate && moment(new Date(values.expirationDate.year, values.expirationDate.month - 1, values.expirationDate.day)).format('YYYY-MM-DD')
     }).then(() => props.onCancelModal && props.onCancelModal());
   }
 

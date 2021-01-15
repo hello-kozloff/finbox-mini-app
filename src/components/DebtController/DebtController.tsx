@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 import {IState} from "../../store/types/state";
 import {getFriendsState} from "../../store/reducers/friends";
 import {DebtCard} from "../index";
-import moment from "moment";
+import moment from 'moment';
 
 const debtContainer = block('debt-container');
 
@@ -66,43 +66,41 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
           </button>
         </span>
         <div className={debtContainer('content')}>
-          {index === 0 && (
-            sortType === SortType.ByMaximumSum ? (
-              <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-                {(data) => {
-                  return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
-                    return Number(b.sum) - Number(a.sum);
-                  }))
-                }}
-              </FirebaseDatabaseNode>
-            ) : (
-              <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-                {(data) => {
-                  return data.isLoading ? <Spinner size="medium" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
-                    return moment(a.expirationDate).diff(moment(b.expirationDate))
-                  }))
-                }}
-              </FirebaseDatabaseNode>
-            )
+          {index === 0 && sortType === SortType.ByMaximumSum && (
+            <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
+              {(data) => {
+                return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
+                  return Number(b.sum) - Number(a.sum);
+                }))
+              }}
+            </FirebaseDatabaseNode>
           )}
-          {index === 1 && (
-            sortType === SortType.ByMaximumSum ? (
-              <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-                {(data) => {
-                  return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.lent, Object.values(data.value).sort((a: any, b: any) => {
-                    return Number(b.sum) - Number(a.sum);
-                  }))
-                }}
-              </FirebaseDatabaseNode>
-            ) : (
-              <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-                {(data) => {
-                  return data.isLoading ? <Spinner size="medium" /> : data.value && renderCard(DebtType.lent, Object.values(data.value).sort((a: any, b: any) => {
-                    return moment(a.expirationDate).diff(moment(b.expirationDate))
-                  }))
-                }}
-              </FirebaseDatabaseNode>
-            )
+          {index === 0 && sortType === SortType.ByExpirationDate && (
+            <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
+              {(data) => {
+                return data.isLoading ? <Spinner size="medium" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
+                  return moment(new Date(a.expirationDate)).unix() - moment(new Date(b.expirationDate)).unix()
+                }))
+              }}
+            </FirebaseDatabaseNode>
+          )}
+          {index === 1 && sortType === SortType.ByMaximumSum && (
+            <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
+              {(data) => {
+                return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
+                  return Number(b.sum) - Number(a.sum);
+                }))
+              }}
+            </FirebaseDatabaseNode>
+          )}
+          {index === 1 && sortType === SortType.ByExpirationDate && (
+            <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
+              {(data) => {
+                return data.isLoading ? <Spinner size="medium" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
+                  return moment(new Date(a.expirationDate)).unix() - moment(new Date(b.expirationDate)).unix()
+                }))
+              }}
+            </FirebaseDatabaseNode>
           )}
         </div>
       </div>

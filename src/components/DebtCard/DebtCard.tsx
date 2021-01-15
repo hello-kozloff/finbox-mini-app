@@ -4,6 +4,7 @@ import { IDebtCardProps } from './types';
 import getUserName from "../../utils/getUserName";
 import './styles.scss';
 import {Avatar} from "@vkontakte/vkui";
+import moment from 'moment';
 
 /**
  * The class generator.
@@ -27,8 +28,12 @@ export default function DebtCard(props: IDebtCardProps): React.ReactElement {
           {userName}
         </span>
         <div className={debtCard('datestamp')}>
-          <span className={debtCard('date')}>{props.createdAt}</span>
-          {props.expirationDate && <span className={debtCard('date', { 'return': true })}>{props.expirationDate}</span>}
+          <span className={debtCard('date')}>
+            {moment(props.createdAt).format('DD-MM-YYYY')}
+          </span>
+          {props.expirationDate && <span className={debtCard('date', { 'return': true })}>
+            {moment(props.expirationDate).format('DD-MM-YYYY')}
+          </span>}
         </div>
       </div>
       <span className={debtCard('price')}>
