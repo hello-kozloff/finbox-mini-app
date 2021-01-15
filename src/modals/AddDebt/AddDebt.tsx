@@ -45,7 +45,10 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
    * The handle of form submit.
    */
   async function onSubmit(values: IAddDebtValues, runMutation: RunMutation) {
-    await runMutation(values).then(() => props.onCancelModal && props.onCancelModal());
+    await runMutation({
+      ...values,
+      createdAt: moment().format('DD-MM-YYYY')
+    }).then(() => props.onCancelModal && props.onCancelModal());
   }
 
   /**
