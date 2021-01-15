@@ -1,0 +1,8 @@
+.carousel-cell {
+    padding: 0 32px;
+    box-sizing: border-box;
+}
+
+.carousel-cell:not(:last-child) {
+    padding-right: 0;
+}
