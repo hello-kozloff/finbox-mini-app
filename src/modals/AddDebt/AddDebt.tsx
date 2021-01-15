@@ -6,7 +6,7 @@ import * as ui from '@vkontakte/vkui';
 import * as icons from "@vkontakte/icons";
 import { getCurrentUserId } from '../../utils';
 import { getFriendsState } from '../../store/reducers/friends';
-import IAddDebtModalProps, { IAddDebtValues, DebtType } from './types';
+import IAddDebtModalProps, { IAddDebtValues, IFriendOption, DebtType } from './types';
 import { IState } from '../../store/types/state';
 
 function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
@@ -54,6 +54,24 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
    */
   function onSubmit(values: IAddDebtValues): void {
     return console.log(values);
+  }
+
+  /**
+   * The function return friends options.
+   */
+  function getFriendsOptions(): IFriendOption[] {
+    const result: IFriendOption[] = [];
+
+    props.friends.forEach((friend) => {
+      result.push({
+        id: friend.id,
+        first_name: friend.first_name,
+        last_name: friend.last_name,
+        photo_100: friend.photo_100
+      });
+    });
+
+    return result;
   }
 
   return (
