@@ -10,6 +10,7 @@ import {DebtType} from "../../modals/AddDebt/types";
 import {connect} from "react-redux";
 import {IState} from "../../store/types/state";
 import {getFriendsState} from "../../store/reducers/friends";
+import {DebtCard} from "../index";
 
 const debtContainer = block('debt-container');
 
@@ -29,14 +30,27 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
   }
 
   function renderCard(type: DebtType, value: FirebaseDatabaseNodeChildFunctionProps['value']) {
+    const cards: React.ReactNodeArray = [];
+
     if (value !== null) {
-      Object.values(value).map((node: any) => {
+      Object.values(value).forEach((node: any) => {
         if (node.type === type) {
-          console.log(node);
+          const friend = props.friends.find((friend) => friend.id === node.friendId);
+          return friend && cards.push(
+            <DebtCard
+              first_name={friend.first_name}
+              last_name={friend.last_name}
+              photo_100={friend.photo_100}
+              summary=""
+              createdAt=""
+              returnDate=""
+            />
+          )
         }
       });
     }
-    return <div></div>
+
+    return <div>{cards}</div>
   }
 
   return (
