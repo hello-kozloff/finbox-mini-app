@@ -18,9 +18,11 @@ const dashboardCard = block('dashboard-card');
 export default function DashboardCard(props: IDashboardCardProps): React.ReactElement {
   return (
     <Card className={dashboardCard()}>
-      {props.title && <span className={dashboardCard('subtitle')}>{props.title}</span>}
-      {props.subtitle && <strong className={dashboardCard('title')}>{props.subtitle}</strong>}
-      {props.children && <div className={dashboardCard('children')}>{props.children}</div>}
+      <div className={dashboardCard('container')}>
+        {props.title && <span className={dashboardCard('subtitle')}>{props.title}</span>}
+        {props.subtitle && <strong className={dashboardCard('title')}>{props.subtitle}</strong>}
+        {props.children && <div className={dashboardCard('children')}>{props.children}</div>}
+      </div>
     </Card>
   );
 }
