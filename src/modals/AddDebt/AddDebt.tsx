@@ -13,17 +13,6 @@ import { IState } from '../../store/types/state';
 
 function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
   /**
-   * The modal header part.
-   */
-  const header = (
-    <ui.ModalPageHeader left={
-      <ui.PanelHeaderButton onClick={() => props.onCancelModal && props.onCancelModal()}>
-        <icons.Icon24Cancel />
-      </ui.PanelHeaderButton>
-    }>Добавить долг</ui.ModalPageHeader>
-  );
-
-  /**
    * The initial form values.
    */
   const initialValues: IAddDebtValues = {
@@ -79,7 +68,13 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
   }
 
   return (
-    <ui.ModalPage id={props.id} header={header} dynamicContentHeight={props.dynamicContentHeight}>
+    <ui.ModalPage id={props.id} header={(
+      <ui.ModalPageHeader left={
+        <ui.PanelHeaderButton onClick={() => props.onCancelModal && props.onCancelModal()}>
+          <icons.Icon24Cancel />
+        </ui.PanelHeaderButton>
+      }>Добавить долг</ui.ModalPageHeader>
+    )} dynamicContentHeight={props.dynamicContentHeight}>
       <FirebaseDatabaseMutation path={getCurrentUserId() || '/'} type="push">
         {({ runMutation }) => (
           <formik.Formik initialValues={initialValues} validate={validate} onSubmit={(values) => onSubmit(values, runMutation)}>
