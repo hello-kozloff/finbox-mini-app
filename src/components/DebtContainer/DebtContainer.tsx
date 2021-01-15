@@ -40,9 +40,9 @@ function DebtContainer(props: IDebtContainerProps): React.ReactElement {
           first_name={friend.first_name}
           last_name={friend.last_name}
           photo_100={friend.photo_100}
-          summary={node.summary}
-          createdAt={node.createdAt}
-          returnDate={node.returnDate}
+          sum={0}
+          createdAt={moment()}
+          expirationDate={null}
         />
       ) || <React.Fragment/>
     });

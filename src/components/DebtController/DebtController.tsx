@@ -41,9 +41,9 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
               first_name={friend.first_name}
               last_name={friend.last_name}
               photo_100={friend.photo_100}
-              summary=""
-              createdAt=""
-              returnDate=""
+              sum={node.sum}
+              createdAt={node.createdAt}
+              expirationDate={node.expirationDate}
             />
           )
         }
