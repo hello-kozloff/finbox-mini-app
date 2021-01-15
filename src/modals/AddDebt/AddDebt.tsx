@@ -126,6 +126,28 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                     </ui.FormItem>
                   )}
                 </formik.Field>
+                <formik.Field name="expirationDate">
+                  {({ field, meta }: formik.FieldProps) => (
+                    <ui.FormItem top="Дата возврата" bottom={meta.touched && meta.error}>
+                      <ui.DatePicker
+                        {...field}
+                        min={{
+                          day: new Date().getDay(),
+                          month: new Date().getMonth(),
+                          year: new Date().getFullYear()
+                        }}
+                        max={{
+                          day: new Date().getDay(),
+                          month: new Date().getMonth(),
+                          year: new Date().getFullYear() + 100
+                        }}
+                        onDateChange={(date) => {
+                          return setFieldValue(field.name, date);
+                        }}
+                      />
+                    </ui.FormItem>
+                  )}
+                </formik.Field>
                 <ui.FormItem>
                   <ui.Button type="submit" mode="primary" size="l" before={<icons.Icon24Add />} stretched>
                     Добавить
