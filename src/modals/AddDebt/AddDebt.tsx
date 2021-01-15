@@ -59,13 +59,19 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
    * The function return friends options.
    */
   function getFriendsOptions(): IFriendOption[] {
-    return props.friends.map((friend) => {
-      return {
+    const options: IFriendOption[] = [
+      { value: -1, label: 'Не выбрано' }
+    ];
+
+    props.friends.forEach((friend) => {
+      options.push({
         value: friend.id,
         label: getUserName(friend.first_name, friend.last_name),
         photo_100: friend.photo_100
-      }
+      });
     });
+
+    return options;
   }
 
   return (
@@ -102,7 +108,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                       renderOption={({ option, ...restProps }) => (
                         <ui.CustomSelectOption
                           {...restProps}
-                          before={(
+                          before={option.photo_100 && (
                             <ui.Avatar
                               src={option.photo_100}
                               size={24}
