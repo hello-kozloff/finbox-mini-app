@@ -4,7 +4,8 @@ import { DashboardCard } from '../../../Dashboard/modules';
 
 export default function DebtCarousel(): React.ReactElement {
   const options: FlickityOptions = {
-    initialIndex: 0
+    prevNextButtons: false,
+    pageDots: false
   };
 
   return (
