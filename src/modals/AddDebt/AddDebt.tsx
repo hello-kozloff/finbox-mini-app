@@ -37,6 +37,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
    */
   function validate(values: IAddDebtValues): formik.FormikErrors<IAddDebtValues> {
     const errors: formik.FormikErrors<IAddDebtValues> = {};
+    props.updateModalHeight && props.updateModalHeight();
 
     if (!values.sum) {
       errors.sum = 'Введите сумму';
