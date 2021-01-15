@@ -18,7 +18,7 @@ export default function Dashboard(): React.ReactElement {
 
     Object.values(values).forEach((item: any) => {
       if (item.type === type) {
-        summary = Number(item.summary) + summary;
+        summary = Number(item.sum) + summary;
       }
     });
 
