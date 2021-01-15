@@ -54,9 +54,9 @@ export default function AddDebtModal(props: IModalProps): React.ReactElement {
     return console.log(values);
   }
 
-  return userId && (
+  return (
     <ui.ModalPage id={props.id} header={header}>
-      <FirebaseDatabaseMutation path={userId} type="push">
+      <FirebaseDatabaseMutation path={userId || '/'} type="push">
         {() => (
           <formik.Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
             <formik.Form>
@@ -77,5 +77,5 @@ export default function AddDebtModal(props: IModalProps): React.ReactElement {
         )}
       </FirebaseDatabaseMutation>
     </ui.ModalPage>
-  ) || <React.Fragment />;
+  );
 }
