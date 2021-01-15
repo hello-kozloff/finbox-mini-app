@@ -1,6 +1,6 @@
-import { Moment } from 'moment';
-import { IFriendsState } from '../../store/reducers/friends/types';
 import { SelectOption } from "@vkontakte/vkui/dist/components/CustomSelect/CustomSelect";
+import { DateFormat } from "@vkontakte/vkui/dist/components/DatePicker/DatePicker";
+import { IFriendsState } from '../../store/reducers/friends/types';
 import IFriend from '../../store/types/friend';
 import IModalProps from '../../types/modalProps';
 
@@ -19,7 +19,7 @@ export interface IAddDebtValues {
   type: DebtType;
   sum: number | undefined;
   friendId: IFriend['id'] | undefined;
-  expirationDate?: Moment | undefined;
+  expirationDate?: DateFormat | undefined;
 }
 
 /**
