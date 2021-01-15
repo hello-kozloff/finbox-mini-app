@@ -1,5 +1,6 @@
 import { Moment } from 'moment';
 import { IFriendsState } from '../../store/reducers/friends/types';
+import { SelectOption } from "@vkontakte/vkui/dist/components/CustomSelect/CustomSelect";
 import IFriend from '../../store/types/friend';
 import IModalProps from '../../types/modalProps';
 
@@ -24,12 +25,7 @@ export interface IAddDebtValues {
 /**
  * The friend option.
  */
-export interface IFriendOption {
-  id: IFriend['id'];
-  first_name: IFriend['first_name'];
-  last_name: IFriend['last_name'];
-  photo_100: IFriend['photo_100'];
-}
+export type IFriendOption = SelectOption;
 
 /**
  * The add debt modal props interface.
