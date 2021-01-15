@@ -27,10 +27,10 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
    * The initial form values.
    */
   const initialValues: IAddDebtValues = {
-    type: undefined,
-    sum: undefined,
-    friendId: undefined,
-    expirationDate: undefined
+    type: null,
+    sum: null,
+    friendId: null,
+    expirationDate: null
   };
 
   /**

@@ -16,10 +16,10 @@ export enum DebtType {
  * The add debt form values.
  */
 export interface IAddDebtValues {
-  type: DebtType | undefined;
-  sum: number | undefined;
-  friendId: IFriend['id'] | undefined;
-  expirationDate?: DateFormat | undefined;
+  type: DebtType | null;
+  sum: number | null;
+  friendId: IFriend['id'] | null;
+  expirationDate: DateFormat | null;
 }
 
 /**
