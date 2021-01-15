@@ -41,7 +41,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
 
     if (!values.sum) {
       errors.sum = 'Введите сумму';
-    } else if (!values.friendId) {
+    } else if (!values.friendId || Number(values.friendId) === -1) {
       errors.friendId = 'Выберите контакт из списка';
     }
 
