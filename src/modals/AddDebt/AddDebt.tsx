@@ -15,7 +15,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
    */
   const header = (
     <ui.ModalPageHeader left={
-      <ui.PanelHeaderButton>
+      <ui.PanelHeaderButton onClick={() => props.onCancelModal && props.onCancelModal()}>
         <icons.Icon24Cancel />
       </ui.PanelHeaderButton>
     }>Добавить долг</ui.ModalPageHeader>
