@@ -43,7 +43,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
       errors.type = 'Выберите тип долга';
     } else if (!values.sum) {
       errors.sum = 'Введите сумму';
-    } else if (!values.friendId || Number(values.friendId) === -1) {
+    } else if (!values.friendId || values.friendId === -1) {
       errors.friendId = 'Выберите контакт из списка';
     }
 
@@ -81,53 +81,58 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
       <FirebaseDatabaseMutation path={getCurrentUserId() || '/'} type="push">
         {() => (
           <formik.Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
-            <formik.Form>
-              <formik.Field name="type">
-                {({ field, meta }: formik.FieldProps) => (
-                  <ui.FormItem top="Тип долга" bottom={meta.touched && meta.error}>
-                    <ui.Radio {...field} value={DebtType.borrowed}>
-                      Дал в долг
-                    </ui.Radio>
-                    <ui.Radio {...field} value={DebtType.lent}>
-                      Взял в долг
-                    </ui.Radio>
-                  </ui.FormItem>
-                )}
-              </formik.Field>
-              <formik.Field name="sum">
-                {({ field, meta }: formik.FieldProps) => (
-                  <ui.FormItem top="Сумма долга(₽)" bottom={meta.touched && meta.error}>
-                    <ui.Input {...field} type="number" />
-                  </ui.FormItem>
-                )}
-              </formik.Field>
-              <formik.Field name="friendId">
-                {({ field, meta }: formik.FieldProps) => (
-                  <ui.FormItem top="Выберите друга" bottom={meta.touched && meta.error}>
-                    <ui.Select
-                      {...field}
-                      options={getFriendsOptions()}
-                      renderOption={({ option, ...restProps }) => (
-                        <ui.CustomSelectOption
-                          {...restProps}
-                          before={option.photo_100 && (
-                            <ui.Avatar
-                              src={option.photo_100}
-                              size={24}
-                            />
-                          )}
-                        />
-                      )}
-                    />
-                  </ui.FormItem>
-                )}
-              </formik.Field>
-              <ui.FormItem>
-                <ui.Button type="submit" mode="primary" size="l" before={<icons.Icon24Add />} stretched>
-                  Добавить
-                </ui.Button>
-              </ui.FormItem>
-            </formik.Form>
+            {({ setFieldValue }: formik.FormikProps<IAddDebtValues>) => (
+              <formik.Form>
+                <formik.Field name="type">
+                  {({ field, meta }: formik.FieldProps) => (
+                    <ui.FormItem top="Тип долга" bottom={meta.touched && meta.error}>
+                      <ui.Radio {...field} value={DebtType.borrowed}>
+                        Дал в долг
+                      </ui.Radio>
+                      <ui.Radio {...field} value={DebtType.lent}>
+                        Взял в долг
+                      </ui.Radio>
+                    </ui.FormItem>
+                  )}
+                </formik.Field>
+                <formik.Field name="sum">
+                  {({ field, meta }: formik.FieldProps) => (
+                    <ui.FormItem top="Сумма долга(₽)" bottom={meta.touched && meta.error}>
+                      <ui.Input {...field} type="number" />
+                    </ui.FormItem>
+                  )}
+                </formik.Field>
+                <formik.Field name="friendId">
+                  {({ field, meta }: formik.FieldProps) => (
+                    <ui.FormItem top="Выберите друга" bottom={meta.touched && meta.error}>
+                      <ui.Select
+                        {...field}
+                        options={getFriendsOptions()}
+                        renderOption={({ option, ...restProps }) => (
+                          <ui.CustomSelectOption
+                            {...restProps}
+                            before={option.photo_100 && (
+                              <ui.Avatar
+                                src={option.photo_100}
+                                size={24}
+                              />
+                            )}
+                          />
+                        )}
+                        onChange={(event) => {
+                          return setFieldValue(field.name, Number(event.target.value));
+                        }}
+                      />
+                    </ui.FormItem>
+                  )}
+                </formik.Field>
+                <ui.FormItem>
+                  <ui.Button type="submit" mode="primary" size="l" before={<icons.Icon24Add />} stretched>
+                    Добавить
+                  </ui.Button>
+                </ui.FormItem>
+              </formik.Form>
+            )}
           </formik.Formik>
         )}
       </FirebaseDatabaseMutation>
