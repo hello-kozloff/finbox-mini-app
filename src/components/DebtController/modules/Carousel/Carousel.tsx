@@ -35,7 +35,6 @@ export default class DebtCarousel extends React.Component<IDebtCarousel> {
 
       if (!data.isLoading && data.value !== null) {
         Object.values(data.value).forEach((node: any) => {
-          console.log(node);
           if (node.type === type) {
             sum = Number(node.sum) + sum;
           }
