@@ -7,6 +7,7 @@ import * as ui from '@vkontakte/vkui';
 import * as icons from "@vkontakte/icons";
 import { getCurrentUserId, getUserName } from '../../utils';
 import { getFriendsState } from '../../store/reducers/friends';
+import { RunMutation } from '@react-firebase/database/dist/components/FirebaseDatabaseMutation';
 import IAddDebtModalProps, { IAddDebtValues, IFriendOption, DebtType } from './types';
 import { IState } from '../../store/types/state';
 
@@ -54,8 +55,8 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
   /**
    * The handle of form submit.
    */
-  function onSubmit(values: IAddDebtValues): void {
-    return console.log(values);
+  async function onSubmit(values: IAddDebtValues, runMutation: RunMutation) {
+    await runMutation(values).then(() => props.onCancelModal && props.onCancelModal());
   }
 
   /**
@@ -80,8 +81,8 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
   return (
     <ui.ModalPage id={props.id} header={header} dynamicContentHeight={props.dynamicContentHeight}>
       <FirebaseDatabaseMutation path={getCurrentUserId() || '/'} type="push">
-        {() => (
-          <formik.Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
+        {({ runMutation }) => (
+          <formik.Formik initialValues={initialValues} validate={validate} onSubmit={(values) => onSubmit(values, runMutation)}>
             {({ setFieldValue }: formik.FormikProps<IAddDebtValues>) => (
               <formik.Form>
                 <formik.Field name="type">
