@@ -72,6 +72,13 @@ export default function AddDebtModal(props: IModalProps): React.ReactElement {
                   </ui.FormItem>
                 )}
               </formik.Field>
+              <formik.Field name="sum">
+                {({ field }: formik.FieldProps) => (
+                  <ui.FormItem top="Сумма долга(₽)">
+                    <ui.Input {...field} type="number" />
+                  </ui.FormItem>
+                )}
+              </formik.Field>
             </formik.Form>
           </formik.Formik>
         )}
