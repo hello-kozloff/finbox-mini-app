@@ -25,7 +25,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
    * The initial form values.
    */
   const initialValues: IAddDebtValues = {
-    type: DebtType.borrowed,
+    type: undefined,
     sum: undefined,
     friendId: undefined,
     expirationDate: undefined
