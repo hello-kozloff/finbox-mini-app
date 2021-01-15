@@ -4,9 +4,10 @@ import * as formik from 'formik';
 import * as ui from '@vkontakte/vkui';
 import * as icons from "@vkontakte/icons";
 import { getCurrentUserId } from '../../utils';
+import IModalProps from '../../types/modalProps';
 import { IAddDebtValues, DebtType } from './types';
 
-export default function AddDebtModal(): React.ReactElement {
+export default function AddDebtModal(props: IModalProps): React.ReactElement {
   const userId = getCurrentUserId();
 
   /**
@@ -54,7 +55,7 @@ export default function AddDebtModal(): React.ReactElement {
   }
 
   return userId && (
-    <ui.ModalPage id="add-debt" header={header}>
+    <ui.ModalPage id={props.id} header={header}>
       <FirebaseDatabaseMutation path={userId} type="push">
         {() => (
           <formik.Formik initialValues={initialValues} validate={validate} onSubmit={onSubmit}>
