@@ -4,13 +4,16 @@ import {FirebaseDatabaseNode} from "@react-firebase/database";
 import {Spinner} from '@vkontakte/vkui';
 import {DebtCarousel} from './modules';
 import {getCurrentUserId} from "../../utils";
-import {SortType} from './types';
+import IDebtControllerProps, {SortType} from './types';
 import {FirebaseDatabaseNodeChildFunctionProps} from "@react-firebase/database/dist/types";
 import {DebtType} from "../../modals/AddDebt/types";
+import {connect} from "react-redux";
+import {IState} from "../../store/types/state";
+import {getFriendsState} from "../../store/reducers/friends";
 
 const debtContainer = block('debt-container');
 
-export default function DebtController(): React.ReactElement {
+function DebtController(props: IDebtControllerProps): React.ReactElement {
   const [index, setIndex] = React.useState<number>(0);
   const [sortType, setSortType] = React.useState<SortType>(SortType.ByMaximumSum);
 
@@ -85,3 +88,9 @@ export default function DebtController(): React.ReactElement {
     </div>
   );
 }
+
+const mapStateToProps = (state: IState) => ({
+  friends: getFriendsState(state)
+});
+
+export default connect(mapStateToProps)(DebtController);
