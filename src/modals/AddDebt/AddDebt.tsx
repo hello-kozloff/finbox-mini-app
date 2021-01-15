@@ -39,7 +39,9 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
     const errors: formik.FormikErrors<IAddDebtValues> = {};
     props.updateModalHeight && props.updateModalHeight();
 
-    if (!values.sum) {
+    if (!values.type) {
+      errors.type = 'Выберите тип долга';
+    } else if (!values.sum) {
       errors.sum = 'Введите сумму';
     } else if (!values.friendId || Number(values.friendId) === -1) {
       errors.friendId = 'Выберите контакт из списка';
@@ -83,7 +85,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
               <formik.Field name="type">
                 {({ field, meta }: formik.FieldProps) => (
                   <ui.FormItem top="Тип долга" bottom={meta.touched && meta.error}>
-                    <ui.Radio{...field} value={DebtType.borrowed} defaultChecked>
+                    <ui.Radio{...field} value={DebtType.borrowed}>
                       Дал в долг
                     </ui.Radio>
                     <ui.Radio{...field} value={DebtType.lent}>
