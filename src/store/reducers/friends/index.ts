@@ -5,7 +5,7 @@ import {IState} from "../../types/state";
 
 const initialState: IFriendsState = [
   {
-    id: 0,
+    id: 5234123,
     first_name: 'Test',
     last_name: 'Test',
     photo_100: '...',
@@ -13,7 +13,7 @@ const initialState: IFriendsState = [
     nickname: '...'
   },
   {
-    id: 1,
+    id: 876543,
     first_name: 'Test 2',
     last_name: 'Test 2',
     photo_100: '...',
