@@ -14,7 +14,7 @@ export enum DebtType {
  */
 export interface IAddDebtValues {
   type: DebtType;
-  friendId: IFriend['id'] | undefined;
   sum: number | undefined;
+  friendId: IFriend['id'] | undefined;
   expirationDate?: Moment | undefined;
 }
