@@ -89,7 +89,9 @@
 .PanelHeader--ios::before,
 .PanelHeader--ios .PanelHeader__in {
   height: var(--panelheader_height_ios);
-  padding-top: var(--safe-area-inset-top);
+  padding-top: 40px;
+  box-sizing: border-box;
+  padding-left: 24px;
 }
 
 .PanelHeader--ios .PanelHeader__left {
@@ -98,7 +100,8 @@
   flex-grow: 1;
   opacity: 1;
   transition: opacity .3s var(--ios-easing);
-  padding: 4px 0 4px 4px;
+  /*padding: 4px 0 4px 4px;*/
+  display: none;
 }
 
 .PanelHeader--ios .PanelHeader__left .PanelHeaderButton--primitive {
@@ -112,7 +115,7 @@
 
 .PanelHeader--ios .PanelHeader__content {
   font-size: 21px;
-  line-height: var(--panelheader_height_ios);
+  /*line-height: var(--panelheader_height_ios);*/
   text-align: center;
   opacity: 1;
   transition: opacity .3s var(--ios-easing);
