@@ -20,9 +20,19 @@ export default function DebtCarousel(): React.ReactElement {
    * @param data
    */
   function getTotalValue(type: DebtType, data: FirebaseDatabaseNodeChildFunctionProps) {
-    console.log(type, data.value);
+    let sum = 0;
 
-    return `- ₽`;
+    if (!data.isLoading && data.value !== null) {
+      Object.values(data.value).forEach((node: any) => {
+        console.log(node);
+        if (node.type === type) {
+          console.log(node);
+          sum = Number(node.sum) + sum;
+        }
+      });
+    }
+
+    return `${sum} ₽`;
   }
 
   return (
