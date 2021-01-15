@@ -1,5 +1,5 @@
 .catalog-item {
-  width: calc(100% - 24px);
+  width: calc(100% - 48px);
   margin: auto;
   column-gap: 24px;
   grid-template-columns: min-content 1fr min-content;
@@ -17,6 +17,10 @@
 
   .Avatar__img {
     object-fit: cover;
+  }
+
+  &:last-child {
+    margin-bottom: 48px;
   }
 }
 

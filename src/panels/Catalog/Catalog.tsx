@@ -14,7 +14,14 @@ export default function CatalogPanel(props: IPanelProps): React.ReactElement {
     <Panel id={props.id}>
       <PanelHeader fixed={false}>Каталог</PanelHeader>
       <ContentFix>
-        <CatalogItem href="https://www.kredito24.ru/" avatarSrc="https://www.orelbanks.ru/bimage/kredito24-logo.jpg" title="kredito24" value="До 100 руб" />
+        <CatalogItem href="//https://www.kredito24.ru/" avatarSrc="https://www.orelbanks.ru/bimage/kredito24-logo.jpg" title="kredito24" value="До 100 руб" />
+        <CatalogItem href="//https://www.kredito24.ru/" avatarSrc="https://www.orelbanks.ru/bimage/kredito24-logo.jpg" title="kredito24" value="До 100 руб" />
+        <CatalogItem href="//https://www.kredito24.ru/" avatarSrc="https://www.orelbanks.ru/bimage/kredito24-logo.jpg" title="kredito24" value="До 100 руб" />
+        <CatalogItem href="//https://www.kredito24.ru/" avatarSrc="https://www.orelbanks.ru/bimage/kredito24-logo.jpg" title="kredito24" value="До 100 руб" />
+        <CatalogItem href="//https://www.kredito24.ru/" avatarSrc="https://www.orelbanks.ru/bimage/kredito24-logo.jpg" title="kredito24" value="До 100 руб" />
+        <CatalogItem href="//https://www.kredito24.ru/" avatarSrc="https://www.orelbanks.ru/bimage/kredito24-logo.jpg" title="kredito24" value="До 100 руб" />
+        <CatalogItem href="//https://www.kredito24.ru/" avatarSrc="https://www.orelbanks.ru/bimage/kredito24-logo.jpg" title="kredito24" value="До 100 руб" />
+        <CatalogItem href="//https://www.kredito24.ru/" avatarSrc="https://www.orelbanks.ru/bimage/kredito24-logo.jpg" title="kredito24" value="До 100 руб" />
       </ContentFix>
     </Panel>
   );

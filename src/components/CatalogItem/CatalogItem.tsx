@@ -12,7 +12,7 @@ export default function CatalogItem(props: {
   value: string;
 }) {
   return (
-    <a href={props.href} className={catalogItem()}>
+    <a href={props.href} target="_blank" rel="noreferrer" className={catalogItem()}>
       <Avatar src={props.avatarSrc} size={48} />
       <span className={catalogItem('title')}>{props.title}</span>
       <span className={catalogItem('value')}>{props.value}</span>
