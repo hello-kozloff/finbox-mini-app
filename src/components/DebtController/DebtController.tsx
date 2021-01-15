@@ -44,7 +44,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
             photo_100={friend.photo_100}
             sum={node.sum}
             createdAt={node.createdAt}
-            expirationDate={node.createdAt}
+            expirationDate={node.expirationDate}
           />
         ) : <React.Fragment/>;
       } else return <React.Fragment />;

@@ -28,6 +28,7 @@ export default function DebtCard(props: IDebtCardProps): React.ReactElement {
         </span>
         <div className={debtCard('datestamp')}>
           <span className={debtCard('date')}>{props.createdAt}</span>
+          {props.expirationDate && <span className={debtCard('date', { 'return': true })}>{props.expirationDate}</span>}
         </div>
       </div>
       <span className={debtCard('price')}>

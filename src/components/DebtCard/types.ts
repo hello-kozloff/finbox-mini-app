@@ -7,5 +7,5 @@ export interface IDebtCardProps {
   photo_100: IFriend['photo_100'];
   sum: IAddDebtValues['sum'];
   createdAt: string;
-  expirationDate: IAddDebtValues['expirationDate'];
+  expirationDate: string | null;
 }
