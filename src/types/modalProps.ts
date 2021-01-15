@@ -6,4 +6,5 @@ import { ModalPageProps } from '@vkontakte/vkui/dist/components/ModalPage/ModalP
 export default interface IModalProps {
   id: ModalPageProps['id'];
   updateModalHeight?: () => void;
+  dynamicContentHeight?: ModalPageProps['dynamicContentHeight'];
 }
