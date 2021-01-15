@@ -1,6 +1,6 @@
 import React from 'react';
 import { block } from 'bem-cn';
-import { Card as CardWrapper } from '@vkontakte/vkui';
+import { Card } from '@vkontakte/vkui';
 import { IDashboardCardProps } from './types';
 import './styles.scss';
 
@@ -17,12 +17,10 @@ const dashboardCard = block('dashboard-card');
  */
 export default function DashboardCard(props: IDashboardCardProps): React.ReactElement {
   return (
-    <CardWrapper>
-      <div className={dashboardCard()}>
-        {props.title && <span className={dashboardCard('subtitle')}>{props.title}</span>}
-        {props.subtitle && <strong className={dashboardCard('title')}>{props.subtitle}</strong>}
-        {props.children && <div className={dashboardCard('children')}>{props.children}</div>}
-      </div>
-    </CardWrapper>
+    <Card className={dashboardCard()}>
+      {props.title && <span className={dashboardCard('subtitle')}>{props.title}</span>}
+      {props.subtitle && <strong className={dashboardCard('title')}>{props.subtitle}</strong>}
+      {props.children && <div className={dashboardCard('children')}>{props.children}</div>}
+    </Card>
   );
 }
