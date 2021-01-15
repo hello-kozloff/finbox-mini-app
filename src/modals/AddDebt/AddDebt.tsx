@@ -38,7 +38,9 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
   function validate(values: IAddDebtValues): formik.FormikErrors<IAddDebtValues> {
     const errors: formik.FormikErrors<IAddDebtValues> = {};
 
-    if (!values.sum) {
+    if (!values.type) {
+      errors.type = 'Выберите тип долга';
+    } else if (!values.sum) {
       errors.sum = 'Введите сумму';
     } else if (!values.friendId) {
       errors.friendId = 'Выберите контакт из списка';
