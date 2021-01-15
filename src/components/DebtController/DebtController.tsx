@@ -5,6 +5,8 @@ import {Spinner} from '@vkontakte/vkui';
 import {DebtCarousel} from './modules';
 import {getCurrentUserId} from "../../utils";
 import {SortType} from './types';
+import {FirebaseDatabaseNodeChildFunctionProps} from "@react-firebase/database/dist/types";
+import {DebtType} from "../../modals/AddDebt/types";
 
 const debtContainer = block('debt-container');
 
@@ -23,6 +25,17 @@ export default function DebtController(): React.ReactElement {
     }
   }
 
+  function renderCard(type: DebtType, value: FirebaseDatabaseNodeChildFunctionProps['value']) {
+    if (value !== null) {
+      Object.values(value).map((node: any) => {
+        if (node.type === type) {
+          console.log(node);
+        }
+      });
+    }
+    return <div></div>
+  }
+
   return (
     <div>
       <DebtCarousel
@@ -37,11 +50,36 @@ export default function DebtController(): React.ReactElement {
           </button>
         </span>
         <div className={debtContainer('content')}>
-          <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-            {(data) => (
-              data.isLoading ? <Spinner size="regular" /> : <div>Hello</div>
-            )}
-          </FirebaseDatabaseNode>
+          {index === 0 && (
+            sortType === SortType.ByMaximumSum ? (
+              <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
+                {(data) => (
+                  data.isLoading ? <Spinner size="regular" /> : renderCard(DebtType.borrowed, data.value)
+                )}
+              </FirebaseDatabaseNode>
+            ) : (
+              <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
+                {(data) => (
+                  data.isLoading ? <Spinner size="regular" /> : renderCard(DebtType.borrowed, data.value)
+                )}
+              </FirebaseDatabaseNode>
+            )
+          )}
+          {index === 1 && (
+            sortType === SortType.ByMaximumSum ? (
+              <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
+                {(data) => (
+                  data.isLoading ? <Spinner size="regular" /> : renderCard(DebtType.lent, data.value)
+                )}
+              </FirebaseDatabaseNode>
+            ) : (
+              <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
+                {(data) => (
+                  data.isLoading ? <Spinner size="regular" /> : renderCard(DebtType.lent, data.value)
+                )}
+              </FirebaseDatabaseNode>
+            )
+          )}
         </div>
       </div>
     </div>
