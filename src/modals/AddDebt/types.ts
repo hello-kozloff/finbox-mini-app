@@ -8,8 +8,8 @@ import IModalProps from '../../types/modalProps';
  * The debt types.
  */
 export enum DebtType {
-  'borrowed',
-  'lent'
+  'borrowed' = 'borrowed',
+  'lent' = 'lent'
 }
 
 /**
