@@ -1,13 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 import * as formik from 'formik';
 import * as ui from '@vkontakte/vkui';
 import * as icons from "@vkontakte/icons";
 import { getCurrentUserId } from '../../utils';
-import IModalProps from '../../types/modalProps';
-import { IAddDebtValues, DebtType } from './types';
+import { getFriendsState } from '../../store/reducers/friends';
+import IAddDebtModalProps, { IAddDebtValues, DebtType } from './types';
+import { IState } from '../../store/types/state';
 
-export default function AddDebtModal(props: IModalProps): React.ReactElement {
+function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
   const userId = getCurrentUserId();
 
   /**
@@ -86,3 +88,9 @@ export default function AddDebtModal(props: IModalProps): React.ReactElement {
     </ui.ModalPage>
   );
 }
+
+const mapStateToProps = (state: IState) => ({
+  friends: getFriendsState(state)
+});
+
+export default connect(mapStateToProps)(AddDebtModal);
