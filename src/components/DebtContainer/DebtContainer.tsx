@@ -41,7 +41,7 @@ function DebtContainer(props: IDebtContainerProps): React.ReactElement {
           last_name={friend.last_name}
           photo_100={friend.photo_100}
           sum={0}
-          createdAt={moment()}
+          createdAt="0000"
           expirationDate={null}
         />
       ) || <React.Fragment/>
