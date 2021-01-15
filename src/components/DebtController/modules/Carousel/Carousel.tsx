@@ -42,7 +42,7 @@ export default function DebtCarousel(): React.ReactElement {
           {(data) => (
             <DashboardCard
               title="Полученные займы"
-              subtitle={data.isLoading ? <Spinner size="small" /> : getTotalValue(DebtType.borrowed, data)}
+              subtitle={data.isLoading ? <Spinner size="regular" /> : getTotalValue(DebtType.borrowed, data)}
             />
           )}
         </FirebaseDatabaseNode>
@@ -52,7 +52,7 @@ export default function DebtCarousel(): React.ReactElement {
           {(data) => (
             <DashboardCard
               title="Выданные займы"
-              subtitle={data.isLoading ? <Spinner size="small" /> : getTotalValue(DebtType.lent, data)}
+              subtitle={data.isLoading ? <Spinner size="regular" /> : getTotalValue(DebtType.lent, data)}
             />
           )}
         </FirebaseDatabaseNode>
