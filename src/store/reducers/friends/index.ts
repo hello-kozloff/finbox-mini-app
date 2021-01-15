@@ -3,7 +3,16 @@ import { FriendsAction } from '../../actions/friends/types';
 import { IFriendsState } from './types';
 import {IState} from "../../types/state";
 
-const initialState: IFriendsState = [];
+const initialState: IFriendsState = [
+  {
+    id: -1,
+    first_name: 'Test',
+    last_name: 'Test',
+    photo_100: '...',
+    track_code: '...',
+    nickname: '...'
+  }
+];
 
 /**
  * The friends reducer.
