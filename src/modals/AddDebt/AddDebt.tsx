@@ -113,6 +113,9 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                   </ui.FormItem>
                 )}
               </formik.Field>
+              <ui.Button type="submit" mode="primary" size="l" before={<icons.Icon24Add />} stretched>
+                Добавить
+              </ui.Button>
             </formik.Form>
           </formik.Formik>
         )}
