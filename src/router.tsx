@@ -31,11 +31,13 @@ function Router(props: IRouterProps): React.ReactElement {
             onClick={onStoryChange}
             selected={activeStory === TabRoute.Catalog}
             data-story={TabRoute.Catalog}
+            text="Займы"
           ><Icon28BookOutline /></TabbarItem>
           <TabbarItem
             onClick={onStoryChange}
             selected={activeStory === TabRoute.App}
             data-story={TabRoute.App}
+            text="Трэкер"
           ><Icon28ServicesOutline /></TabbarItem>
         </Tabbar>
       }>
