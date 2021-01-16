@@ -174,3 +174,8 @@
 .vkui__root a:focus {
   outline: none;
 }
+
+.button:hover,
+.button:focus {
+  user-select: none;
+}
