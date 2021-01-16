@@ -17,8 +17,12 @@ export default class DebtCarousel extends React.Component<IDebtCarousel> {
     });
   }
 
+  onClickSlide = (index: number) => {
+    this.instance?.select(index);
+  }
+
   render() {
-    const options: FlickityOptions = {
+      const options: FlickityOptions = {
       initialIndex: this.props.initialIndex || 0,
       cellAlign: 'left',
       prevNextButtons: false,
@@ -46,22 +50,24 @@ export default class DebtCarousel extends React.Component<IDebtCarousel> {
 
     return (
       <Flickity flickityRef={(ref) => this.instance = ref} options={options}>
-        <div className="carousel-cell">
+        <div className="carousel-cell carousel-cell-1">
           <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
             {(data) => (
               <DashboardCard
                 title="Выданные займы"
                 subtitle={data.isLoading ? <Spinner size="regular" /> : getTotalValue(DebtType.borrowed, data)}
+                onClick={() => this.onClickSlide(0)}
               />
             )}
           </FirebaseDatabaseNode>
         </div>
-        <div className="carousel-cell">
+        <div className="carousel-cell carousel-cell-2">
           <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
             {(data) => (
               <DashboardCard
                 title="Полученные займы"
                 subtitle={data.isLoading ? <Spinner size="regular" /> : getTotalValue(DebtType.lent, data)}
+                onClick={() => this.onClickSlide(1)}
               />
             )}
           </FirebaseDatabaseNode>

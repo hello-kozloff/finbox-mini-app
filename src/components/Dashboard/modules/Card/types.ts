@@ -7,4 +7,5 @@ export interface IDashboardCardProps {
   title?: string;
   subtitle?: string | ReactNode;
   children?: ReactNode;
+  onClick?: () => void;
 }
