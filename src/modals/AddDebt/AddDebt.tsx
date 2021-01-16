@@ -16,7 +16,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
    * The initial form values.
    */
   const initialValues: IAddDebtValues = {
-    type: null,
+    type: DebtType.borrowed,
     sum: null,
     friendId: null,
     expirationDate: null
@@ -87,7 +87,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                 <formik.Field name="type">
                   {({ field, meta }: formik.FieldProps) => (
                     <ui.FormItem top="Тип долга*" bottom={meta.touched && meta.error}>
-                      <ui.Radio {...field} value={DebtType.borrowed}>
+                      <ui.Radio {...field} value={DebtType.borrowed} defaultChecked>
                         Дал в долг
                       </ui.Radio>
                       <ui.Radio {...field} value={DebtType.lent}>
