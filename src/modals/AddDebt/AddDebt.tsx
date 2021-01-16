@@ -98,14 +98,14 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                 </formik.Field>
                 <formik.Field name="sum">
                   {({ field, meta }: formik.FieldProps) => (
-                    <ui.FormItem top="Сумма*" bottom={meta.touched && meta.error}>
+                    <ui.FormItem top="Сумма*" bottom={meta.touched && meta.error} status={meta.touched && meta.error ? 'error' : undefined}>
                       <ui.Input {...field} type="number" min={1} />
                     </ui.FormItem>
                   )}
                 </formik.Field>
                 <formik.Field name="friendId">
                   {({ field, meta }: formik.FieldProps) => (
-                    <ui.FormItem top="Выберите друга*" bottom={meta.touched && meta.error}>
+                    <ui.FormItem top="Выберите друга*" bottom={meta.touched && meta.error} status={meta.touched && meta.error ? 'error' : undefined}>
                       <ui.Select
                         {...field}
                         options={getFriendsOptions()}
@@ -129,7 +129,7 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                 </formik.Field>
                 <formik.Field name="expirationDate">
                   {({ field, meta }: formik.FieldProps) => (
-                    <ui.FormItem top="Дата возврата" bottom={meta.touched && meta.error}>
+                    <ui.FormItem top="Дата возврата" bottom={meta.touched && meta.error} status={meta.touched && meta.error ? 'error' : undefined}>
                       <ui.DatePicker
                         {...field}
                         min={{
