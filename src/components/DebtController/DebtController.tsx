@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropsWithChildren} from 'react';
 import {block} from "bem-cn";
 import {FirebaseDatabaseNode} from "@react-firebase/database";
 import {Spinner,ActionSheet,ActionSheetItem} from '@vkontakte/vkui';
@@ -11,12 +11,15 @@ import {IState} from "../../store/types/state";
 import {getFriendsState} from "../../store/reducers/friends";
 import {DebtCard} from "../index";
 import moment from 'moment';
+import {FirebaseDatabaseNodeChildFunctionProps} from "@react-firebase/database/dist/types";
+import firebase from "../../firebase";
 
 const debtContainer = block('debt-container');
 
 function DebtController(props: IDebtControllerProps): React.ReactElement {
   const [index, setIndex] = React.useState<number>(0);
   const [sortType, setSortType] = React.useState<SortType>(SortType.ByMaximumSum);
+  const [items, setItems] = React.useState<any>(null);
 
   /**
    * The function change sort type.
@@ -27,6 +30,21 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
     } else {
       return setSortType(SortType.ByMaximumSum);
     }
+  }
+
+  React.useEffect(() => {
+    fetchItems();
+  }, []);
+
+  function fetchItems(): void {
+    const data = firebase
+      .database()
+      .ref(getCurrentUserId() || '/');
+
+    data.on('value', (snapshot) => {
+      const val = snapshot.val();
+      setItems(val);
+    });
   }
 
   /**
@@ -41,6 +59,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
 
         return friend ? (
           <DebtCard
+            itemKey="e"
             first_name={friend.first_name}
             last_name={friend.last_name}
             photo_100={friend.photo_100}
@@ -64,6 +83,39 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
     });
   }
 
+  function renderResponse() {
+    return items && Object.entries(items).map((elem) => {
+      const key = elem[0];
+      const value: any = elem[1];
+      const friend = props.friends.find((friend) => friend.id === value.friendId);
+
+      return friend && (
+        <DebtCard
+          itemKey={key}
+          first_name={friend.first_name || ''}
+          last_name={friend.last_name || ''}
+          photo_100={friend.photo_100 || ''}
+          sum={value.sum}
+          createdAt={value.createdAt}
+          expirationDate={value.expirationDate}
+          onClick={(itemKey) => props.onShowPopout && props.onShowPopout(
+            //@ts-ignore
+            <ActionSheet
+              iosCloseItem={<ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
+              onClose={() => props.onShowPopout && props.onShowPopout(undefined)}
+            >
+              <ActionSheetItem autoclose mode="destructive" onClick={() => {
+                firebase.database().ref(`${getCurrentUserId()}/${itemKey}`).remove();
+              }}>
+                Удалить
+              </ActionSheetItem>
+            </ActionSheet>
+          )}
+        />
+      ) || <div/>;
+    }) || <div/>;
+  }
+
   return (
     <div>
       <DebtCarousel
@@ -80,42 +132,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
           </div>
         </div>
         <div className={debtContainer('content')}>
-          {index === 0 && sortType === SortType.ByMaximumSum && (
-            <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-              {(data) => {
-                return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
-                  return Number(b.sum) - Number(a.sum);
-                }))
-              }}
-            </FirebaseDatabaseNode>
-          )}
-          {index === 0 && sortType === SortType.ByExpirationDate && (
-            <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-              {(data) => {
-                return data.isLoading ? <Spinner size="medium" /> : data.value && renderCard(DebtType.borrowed, Object.values(data.value).sort((a: any, b: any) => {
-                  return moment(new Date(a.expirationDate)).unix() - moment(new Date(b.expirationDate)).unix()
-                }))
-              }}
-            </FirebaseDatabaseNode>
-          )}
-          {index === 1 && sortType === SortType.ByMaximumSum && (
-            <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-              {(data) => {
-                return data.isLoading ? <Spinner size="regular" /> : data.value && renderCard(DebtType.lent, Object.values(data.value).sort((a: any, b: any) => {
-                  return Number(b.sum) - Number(a.sum);
-                }))
-              }}
-            </FirebaseDatabaseNode>
-          )}
-          {index === 1 && sortType === SortType.ByExpirationDate && (
-            <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
-              {(data) => {
-                return data.isLoading ? <Spinner size="medium" /> : data.value && renderCard(DebtType.lent, Object.values(data.value).sort((a: any, b: any) => {
-                  return moment(new Date(a.expirationDate)).unix() - moment(new Date(b.expirationDate)).unix()
-                }))
-              }}
-            </FirebaseDatabaseNode>
-          )}
+          {renderResponse}
         </div>
       </div>
     </div>

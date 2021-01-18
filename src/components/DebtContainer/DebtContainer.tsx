@@ -37,6 +37,7 @@ function DebtContainer(props: IDebtContainerProps): React.ReactElement {
       const friend = getFriendById(Number(node.contactId));
       return friend && (
         <DebtCard
+          itemKey=""
           first_name={friend.first_name}
           last_name={friend.last_name}
           photo_100={friend.photo_100}
