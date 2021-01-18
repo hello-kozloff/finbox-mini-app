@@ -5,6 +5,16 @@
 }
 
 .debt-container__header {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+
+  .Button {
+    padding: 0 8px;
+  }
+}
+
+.debt-container__title {
   line-height: 28px;
   font-size: 18px;
   font-weight: bold;

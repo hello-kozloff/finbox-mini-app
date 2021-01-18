@@ -1,7 +1,8 @@
 import React from 'react';
 import {block} from "bem-cn";
 import {FirebaseDatabaseNode} from "@react-firebase/database";
-import {Spinner} from '@vkontakte/vkui';
+import {Spinner,Button} from '@vkontakte/vkui';
+import { Icon28EditOutline } from '@vkontakte/icons';
 import {DebtCarousel} from './modules';
 import {getCurrentUserId} from "../../utils";
 import IDebtControllerProps, {SortType} from './types';
@@ -58,13 +59,18 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
         onChange={(index) => setIndex(index)}
       />
       <div className={debtContainer()}>
-        <span className={debtContainer('header')}>
-          Займы по {' '}
-          <button type="button" onClick={() => changeSortType()}>
-            {sortType === SortType.ByMaximumSum && 'большей сумме ₽'}
-            {sortType === SortType.ByExpirationDate && 'дате возврата'}
-          </button>
-        </span>
+        <div className={debtContainer('header')}>
+          <div className={debtContainer('title')}>
+            Займы по {' '}
+            <button type="button" onClick={() => changeSortType()}>
+              {sortType === SortType.ByMaximumSum && 'большей сумме ₽'}
+                {sortType === SortType.ByExpirationDate && 'дате возврата'}
+            </button>
+          </div>
+          <Button type="button" mode="secondary" size="s">
+            <Icon28EditOutline />
+          </Button>
+        </div>
         <div className={debtContainer('content')}>
           {index === 0 && sortType === SortType.ByMaximumSum && (
             <FirebaseDatabaseNode path={getCurrentUserId() || '/'}>
