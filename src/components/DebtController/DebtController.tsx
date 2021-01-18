@@ -44,10 +44,6 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
     }
   }
 
-  console.log('index', index);
-  console.log('sortType', sortType);
-  console.log('data', data);
-
   function renderData() {
     return data === null ? (<div/>) : Object.entries(data).map((element) => {
       const key = element[0];
@@ -89,7 +85,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
 
   return (
     <div>
-      <DebtCarousel onChange={(index) => setIndex(index)} />
+      <DebtCarousel data={data} onChange={(index) => setIndex(index)} />
       <div className={debtContainer()}>
         <div className={debtContainer('header')}>
           <div className={debtContainer('title')}>
