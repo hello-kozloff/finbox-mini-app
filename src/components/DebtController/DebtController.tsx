@@ -38,6 +38,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
     return data.map((node: any) => {
       if (type === node.type) {
         const friend = props.friends.find((friend) => friend.id === node.friendId);
+
         return friend ? (
           <DebtCard
             first_name={friend.first_name}
@@ -46,7 +47,17 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
             sum={node.sum}
             createdAt={node.createdAt}
             expirationDate={node.expirationDate}
-            onClick={() => console.log('ergpokeprgok')}
+            onClick={() => props.onShowPopout && props.onShowPopout(
+              //@ts-ignore
+              <ActionSheet
+                iosCloseItem={<ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
+                onClose={() => props.onShowPopout && props.onShowPopout(undefined)}
+              >
+                <ActionSheetItem autoclose mode="destructive">
+                  Удалить
+                </ActionSheetItem>
+              </ActionSheet>
+            )}
           />
         ) : <React.Fragment/>;
       } else return <React.Fragment />;
