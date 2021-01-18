@@ -96,6 +96,33 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                     </ui.FormItem>
                   )}
                 </formik.Field>
+                <formik.Field name="expirationDate">
+                  {({ field, meta }: formik.FieldProps) => (
+                    <ui.FormItem top="Дата возврата" bottom={meta.touched && meta.error} status={meta.touched && meta.error ? 'error' : undefined}>
+                      <ui.DatePicker
+                        {...field}
+                        min={{
+                          day: Number(moment().format('D')),
+                          month: Number(moment().format('M')),
+                          year: Number(moment().format('YYYY'))
+                        }}
+                        max={{
+                          day: Number(moment().format('D')),
+                          month: Number(moment().format('M')),
+                          year: Number(moment().format('YYYY')) + 1000
+                        }}
+                        defaultValue={{
+                          day: Number(moment().format('D')),
+                          month: Number(moment().format('M')),
+                          year: Number(moment().format('YYYY'))
+                        }}
+                        onDateChange={(date) => {
+                          return setFieldValue(field.name, date);
+                        }}
+                      />
+                    </ui.FormItem>
+                  )}
+                </formik.Field>
                 <formik.Field name="sum">
                   {({ field, meta }: formik.FieldProps) => (
                     <ui.FormItem top="Сумма*" bottom={meta.touched && meta.error} status={meta.touched && meta.error ? 'error' : undefined}>
@@ -122,28 +149,6 @@ function AddDebtModal(props: IAddDebtModalProps): React.ReactElement {
                         )}
                         onChange={(event) => {
                           return setFieldValue(field.name, Number(event.target.value));
-                        }}
-                      />
-                    </ui.FormItem>
-                  )}
-                </formik.Field>
-                <formik.Field name="expirationDate">
-                  {({ field, meta }: formik.FieldProps) => (
-                    <ui.FormItem top="Дата возврата" bottom={meta.touched && meta.error} status={meta.touched && meta.error ? 'error' : undefined}>
-                      <ui.DatePicker
-                        {...field}
-                        min={{
-                          day: Number(moment().format('D')),
-                          month: Number(moment().format('M')),
-                          year: Number(moment().format('YYYY'))
-                        }}
-                        max={{
-                          day: Number(moment().format('D')),
-                          month: Number(moment().format('M')),
-                          year: Number(moment().format('YYYY')) + 1000
-                        }}
-                        onDateChange={(date) => {
-                          return setFieldValue(field.name, date);
                         }}
                       />
                     </ui.FormItem>
