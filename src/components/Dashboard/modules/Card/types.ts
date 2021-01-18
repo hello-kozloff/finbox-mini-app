@@ -8,4 +8,5 @@ export interface IDashboardCardProps {
   subtitle?: string | ReactNode;
   children?: ReactNode;
   onClick?: () => void;
+  selected?: boolean;
 }

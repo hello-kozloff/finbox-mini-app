@@ -96,8 +96,12 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
 
   return (
     <div>
-      <DebtSection data={data} onChange={(index) => setIndex(index)} />
-      <DebtCarousel data={data} onChange={(index) => setIndex(index)} />
+      <div className="debt-desktop">
+        <DebtSection data={data} index={index} onChange={(index) => setIndex(index)} />
+      </div>
+      <div className="debt-mobile">
+        <DebtCarousel data={data} onChange={(index) => setIndex(index)} />
+      </div>
       <div className={debtContainer()}>
         <div className={debtContainer('header')}>
           <div className={debtContainer('title')}>

@@ -13,14 +13,11 @@ export default class  DebtSection extends React.Component<IDebtSection> {
     });
   }
 
-  onClickSlide = (index: number) => {
-    this.instance?.select(index);
-  }
-
   render() {
     const options: FlickityOptions = {
-      initialIndex: this.props.initialIndex || 0,
+      initialIndex: 0,
       cellAlign: 'left',
+      draggable: false,
       prevNextButtons: false,
       pageDots: false
     };
@@ -50,14 +47,16 @@ export default class  DebtSection extends React.Component<IDebtSection> {
           <DashboardCard
             title="Выданные займы"
             subtitle={getTotalValue(DebtType.borrowed, this.props.data)}
-            onClick={() => this.onClickSlide(0)}
+            onClick={() => this.props.onChange && this.props.onChange(0)}
+            selected={this.props.index === 0}
           />
         </div>
         <div className="carousel-cell carousel-cell-2">
           <DashboardCard
             title="Полученные займы"
             subtitle={getTotalValue(DebtType.lent, this.props.data)}
-            onClick={() => this.onClickSlide(1)}
+            onClick={() => this.props.onChange && this.props.onChange(1)}
+            selected={this.props.index === 1}
           />
         </div>
       </Flickity>

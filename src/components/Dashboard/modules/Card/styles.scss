@@ -1,19 +1,23 @@
 .dashboard-card {
   margin-bottom: 24px;
+}
+
+.dashboard-card__container {
   box-shadow: 0px 10px 20px rgba(44, 37, 210, 0.05);
   background-color: var(--white);
   border-radius: 8px;
   box-sizing: border-box;
-  padding: 12px 16px;
-  min-height: 102px;
   width: 100%;
   min-width: 240px;
-}
 
-.dashboard-card__container {
+  padding: 12px 16px;
   align-items: flex-start;
   flex-direction: column;
   display: flex;
+
+  &_selected {
+    box-shadow: 0px 10px 20px rgba(44, 37, 210, 0.2);
+  }
 }
 
 .dashboard-card__subtitle {
@@ -32,4 +36,16 @@
 
 .dashboard-card__children {
 
+}
+
+.debt-desktop {
+  @media screen and (max-width: 630px) {
+    display: none;
+  }
+}
+
+.debt-mobile {
+  @media screen and (min-width: 629px) {
+    display: none;
+  }
 }

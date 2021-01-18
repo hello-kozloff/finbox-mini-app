@@ -1,8 +1,5 @@
-import { FlickityOptions } from 'react-flickity-component';
-import {Platform} from "@vkontakte/vkui";
-
 export default interface IDebtSection {
   data: {} | null;
-  initialIndex?: FlickityOptions['initialIndex'];
+  index: number;
   onChange?: (index: number) => void;
 }
