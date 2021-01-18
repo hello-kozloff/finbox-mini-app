@@ -1,18 +1,15 @@
-import React, {PropsWithChildren} from 'react';
+import React from 'react';
 import {block} from "bem-cn";
-import {FirebaseDatabaseNode} from "@react-firebase/database";
-import {Spinner,ActionSheet,ActionSheetItem} from '@vkontakte/vkui';
+import {ActionSheet, ActionSheetItem} from '@vkontakte/vkui';
 import {DebtCarousel} from './modules';
 import {getCurrentUserId} from "../../utils";
 import IDebtControllerProps, {SortType} from './types';
-import {DebtType} from "../../modals/AddDebt/types";
 import {connect} from "react-redux";
 import {IState} from "../../store/types/state";
 import {getFriendsState} from "../../store/reducers/friends";
 import {DebtCard} from "../index";
-import moment from 'moment';
-import {FirebaseDatabaseNodeChildFunctionProps} from "@react-firebase/database/dist/types";
 import firebase from "../../firebase";
+import moment from 'moment';
 
 const debtContainer = block('debt-container');
 
@@ -81,6 +78,12 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
           )}
         />
       ) || <div/>
+    }).sort((a: any, b: any) => {
+      if (sortType === SortType.ByMaximumSum) {
+        return Number(b.props.sum) - Number(a.props.sum);
+      } else {
+        return moment(new Date(a.props.expirationDate)).unix() - moment(new Date(b.props.expirationDate)).unix()
+      }
     });
   }
 
