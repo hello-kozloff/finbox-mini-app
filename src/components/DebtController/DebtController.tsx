@@ -1,6 +1,6 @@
 import React from 'react';
 import {block} from "bem-cn";
-import {ActionSheet, ActionSheetItem} from '@vkontakte/vkui';
+import {ActionSheet, ActionSheetItem, usePlatform} from '@vkontakte/vkui';
 import {DebtCarousel} from './modules';
 import {getCurrentUserId} from "../../utils";
 import IDebtControllerProps, {SortType} from './types';
@@ -18,6 +18,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
   const [index, setIndex] = React.useState<number>(0);
   const [sortType, setSortType] = React.useState<SortType>(SortType.ByMaximumSum);
   const [data, setData] = React.useState<{} | null>(null);
+  const platform = usePlatform();
 
   function fetchData(): void {
     const userId = getCurrentUserId();
@@ -95,7 +96,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
 
   return (
     <div>
-      <DebtCarousel data={data} onChange={(index) => setIndex(index)} />
+      <DebtCarousel data={data} platform={platform} onChange={(index) => setIndex(index)} />
       <div className={debtContainer()}>
         <div className={debtContainer('header')}>
           <div className={debtContainer('title')}>

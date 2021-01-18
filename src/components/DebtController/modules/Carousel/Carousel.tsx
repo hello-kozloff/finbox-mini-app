@@ -1,5 +1,6 @@
 import React from 'react';
 import Flickity, { FlickityOptions } from 'react-flickity-component';
+import { Platform } from '@vkontakte/vkui';
 import { DashboardCard } from '../../../Dashboard/modules';
 import { DebtType } from "../../../../modals/AddDebt/types";
 import IDebtCarousel from './types';
@@ -44,20 +45,22 @@ export default class DebtCarousel extends React.Component<IDebtCarousel> {
       return `${sum} ₽`;
     }
 
+    console.log(this.props.platform);
+
     return (
       <Flickity flickityRef={(ref) => this.instance = ref} options={options}>
         <div className="carousel-cell carousel-cell-1">
           <DashboardCard
             title="Выданные займы"
             subtitle={getTotalValue(DebtType.borrowed, this.props.data)}
-            onClick={() => this.onClickSlide(0)}
+            onClick={() => this.props.platform !== Platform.VKCOM && this.onClickSlide(0) || undefined}
           />
         </div>
         <div className="carousel-cell carousel-cell-2">
           <DashboardCard
             title="Полученные займы"
             subtitle={getTotalValue(DebtType.lent, this.props.data)}
-            onClick={() => this.onClickSlide(1)}
+            onClick={() => this.props.platform !== Platform.VKCOM && this.onClickSlide(1) || undefined}
           />
         </div>
       </Flickity>
