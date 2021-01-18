@@ -19,7 +19,22 @@ const debtContainer = block('debt-container');
 function DebtController(props: IDebtControllerProps): React.ReactElement {
   const [index, setIndex] = React.useState<number>(0);
   const [sortType, setSortType] = React.useState<SortType>(SortType.ByMaximumSum);
-  const [items, setItems] = React.useState<any>(null);
+  const [data, setData] = React.useState<{} | null>(null);
+
+  function fetchData(): void {
+    const userId = getCurrentUserId();
+
+    if (userId !== null) {
+      firebase.database().ref(userId).on('value', (snapshot) => {
+        const value = snapshot.val();
+        setData(value);
+      });
+    }
+  }
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
 
   /**
    * The function change sort type.
@@ -32,95 +47,13 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
     }
   }
 
-  React.useEffect(() => {
-    fetchItems();
-  }, []);
-
-  function fetchItems(): void {
-    const data = firebase
-      .database()
-      .ref(getCurrentUserId() || '/');
-
-    data.on('value', (snapshot) => {
-      const val = snapshot.val();
-      setItems(val);
-    });
-  }
-
-  /**
-   * The function render card.
-   * @param type
-   * @param data
-   */
-  function renderCard(type: DebtType, data: any) {
-    return data.map((node: any) => {
-      if (type === node.type) {
-        const friend = props.friends.find((friend) => friend.id === node.friendId);
-
-        return friend ? (
-          <DebtCard
-            itemKey="e"
-            first_name={friend.first_name}
-            last_name={friend.last_name}
-            photo_100={friend.photo_100}
-            sum={node.sum}
-            createdAt={node.createdAt}
-            expirationDate={node.expirationDate}
-            onClick={() => props.onShowPopout && props.onShowPopout(
-              //@ts-ignore
-              <ActionSheet
-                iosCloseItem={<ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
-                onClose={() => props.onShowPopout && props.onShowPopout(undefined)}
-              >
-                <ActionSheetItem autoclose mode="destructive">
-                  Удалить
-                </ActionSheetItem>
-              </ActionSheet>
-            )}
-          />
-        ) : <React.Fragment/>;
-      } else return <React.Fragment />;
-    });
-  }
-
-  function renderResponse() {
-    return items && Object.entries(items).map((elem) => {
-      const key = elem[0];
-      const value: any = elem[1];
-      const friend = props.friends.find((friend) => friend.id === value.friendId);
-
-      return friend && (
-        <DebtCard
-          itemKey={key}
-          first_name={friend.first_name || ''}
-          last_name={friend.last_name || ''}
-          photo_100={friend.photo_100 || ''}
-          sum={value.sum}
-          createdAt={value.createdAt}
-          expirationDate={value.expirationDate}
-          onClick={(itemKey) => props.onShowPopout && props.onShowPopout(
-            //@ts-ignore
-            <ActionSheet
-              iosCloseItem={<ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
-              onClose={() => props.onShowPopout && props.onShowPopout(undefined)}
-            >
-              <ActionSheetItem autoclose mode="destructive" onClick={() => {
-                firebase.database().ref(`${getCurrentUserId()}/${itemKey}`).remove();
-              }}>
-                Удалить
-              </ActionSheetItem>
-            </ActionSheet>
-          )}
-        />
-      ) || <div/>;
-    }) || <div/>;
-  }
+  console.log('index', index);
+  console.log('sortType', sortType);
+  console.log('data', data);
 
   return (
     <div>
-      <DebtCarousel
-        onChange={(index) => setIndex(index)}
-      />
+      <DebtCarousel onChange={(index) => setIndex(index)} />
       <div className={debtContainer()}>
         <div className={debtContainer('header')}>
           <div className={debtContainer('title')}>
@@ -132,7 +65,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
           </div>
         </div>
         <div className={debtContainer('content')}>
-          {renderResponse}
+
         </div>
       </div>
     </div>
