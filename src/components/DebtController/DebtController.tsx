@@ -51,6 +51,39 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
   console.log('sortType', sortType);
   console.log('data', data);
 
+  function renderData() {
+    return data === null ? (<div/>) : Object.entries(data).map((element) => {
+      const key = element[0];
+      const value: any = element[1];
+      const friend = props.friends.find((friend) => friend.id === value.friendId);
+
+      return friend && (
+        <DebtCard
+          itemKey={key}
+          first_name={friend.first_name || ''}
+          last_name={friend.last_name || ''}
+          photo_100={friend.photo_100 || ''}
+          sum={value.sum}
+          createdAt={value.createdAt}
+          expirationDate={value.expirationDate}
+          onClick={(itemKey) => props.onShowPopout && props.onShowPopout(
+            //@ts-ignore
+            <ActionSheet
+              iosCloseItem={<ActionSheetItem autoclose mode="cancel">Отменить</ActionSheetItem>}
+              onClose={() => props.onShowPopout && props.onShowPopout(undefined)}
+            >
+              <ActionSheetItem autoclose mode="destructive" onClick={() => {
+                firebase.database().ref(`${getCurrentUserId()}/${itemKey}`).remove();
+              }}>
+                Удалить
+              </ActionSheetItem>
+            </ActionSheet>
+          )}
+        />
+      ) || <div/>
+    });
+  }
+
   return (
     <div>
       <DebtCarousel onChange={(index) => setIndex(index)} />
@@ -65,7 +98,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
           </div>
         </div>
         <div className={debtContainer('content')}>
-
+          {renderData()}
         </div>
       </div>
     </div>
