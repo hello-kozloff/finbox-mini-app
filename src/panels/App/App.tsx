@@ -15,7 +15,7 @@ export default function AppPanel(props: IPanelProps): React.ReactElement {
       <PanelHeader fixed={false}>Все займы</PanelHeader>
       <AddButton onModalShow={props.onShowModal} />
       <ContentFix>
-        <DebtController />
+        <DebtController onShowPopout={props.onShowPopout} />
       </ContentFix>
     </Panel>
   );
