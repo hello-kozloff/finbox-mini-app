@@ -37,7 +37,7 @@ function Router(props: IRouterProps): React.ReactElement {
             onClick={onStoryChange}
             selected={activeStory === TabRoute.App}
             data-story={TabRoute.App}
-            text="Трэкер"
+            text="Трекер"
           ><Icon28ServicesOutline /></TabbarItem>
         </Tabbar>
       }>
