@@ -18,6 +18,7 @@ import IModal from "../../types/modal";
  */
 function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): React.ReactElement {
   const [activeModal, setActiveModal] = React.useState<IModal | null>(null);
+  const [popout, setPopout] = React.useState<ViewProps['popout']>(undefined);
 
   /**
    * The function show modal.
@@ -41,7 +42,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
   );
 
   return (
-    <View id={props.id} modal={modal} activePanel={props.activePanel}>
+    <View id={props.id} modal={modal} popout={popout} activePanel={props.activePanel}>
       <AppPanel id={props.id} onShowModal={onShowModal} />
     </View>
   );
