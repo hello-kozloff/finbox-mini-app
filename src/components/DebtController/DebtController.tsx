@@ -10,6 +10,7 @@ import {getFriendsState} from "../../store/reducers/friends";
 import {DebtCard} from "../index";
 import firebase from "../../firebase";
 import moment from 'moment';
+import {DebtType} from "../../modals/AddDebt/types";
 
 const debtContainer = block('debt-container');
 
@@ -33,6 +34,12 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
     fetchData();
   }, []);
 
+  function getCurrentType(): DebtType {
+    if (index === 0) {
+      return DebtType.borrowed;
+    } else return DebtType.lent;
+  }
+
   /**
    * The function change sort type.
    */
@@ -53,6 +60,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
       return friend && (
         <DebtCard
           itemKey={key}
+          type={value.type}
           first_name={friend.first_name || ''}
           last_name={friend.last_name || ''}
           photo_100={friend.photo_100 || ''}
@@ -80,6 +88,8 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
       } else {
         return moment(new Date(a.props.expirationDate)).unix() - moment(new Date(b.props.expirationDate)).unix()
       }
+    }).filter((element: any) => {
+      return element.props.type === getCurrentType();
     });
   }
 
