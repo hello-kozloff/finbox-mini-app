@@ -21,7 +21,7 @@ export default function DebtCard(props: IDebtCardProps): React.ReactElement {
   const userName = getUserName(props.first_name, props.last_name);
 
   return (
-    <div className={debtCard()}>
+    <div className={debtCard()} onClick={() => props.onClick && props.onClick()}>
       <Avatar src={props.photo_100} size={48} />
       <div className={debtCard('content')}>
         <span className={debtCard('username')}>

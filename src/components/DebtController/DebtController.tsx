@@ -1,7 +1,7 @@
 import React from 'react';
 import {block} from "bem-cn";
 import {FirebaseDatabaseNode} from "@react-firebase/database";
-import {Spinner} from '@vkontakte/vkui';
+import {Spinner,ActionSheet,ActionSheetItem} from '@vkontakte/vkui';
 import {DebtCarousel} from './modules';
 import {getCurrentUserId} from "../../utils";
 import IDebtControllerProps, {SortType} from './types';
@@ -46,6 +46,7 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
             sum={node.sum}
             createdAt={node.createdAt}
             expirationDate={node.expirationDate}
+            onClick={() => console.log('ergpokeprgok')}
           />
         ) : <React.Fragment/>;
       } else return <React.Fragment />;

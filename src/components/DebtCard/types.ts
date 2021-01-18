@@ -8,4 +8,5 @@ export interface IDebtCardProps {
   sum: IAddDebtValues['sum'];
   createdAt: string;
   expirationDate: string | null;
+  onClick?: () => void;
 }
