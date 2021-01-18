@@ -1,8 +1,7 @@
 import React from 'react';
 import {block} from "bem-cn";
 import {FirebaseDatabaseNode} from "@react-firebase/database";
-import {Spinner,Button} from '@vkontakte/vkui';
-import { Icon28EditOutline } from '@vkontakte/icons';
+import {Spinner} from '@vkontakte/vkui';
 import {DebtCarousel} from './modules';
 import {getCurrentUserId} from "../../utils";
 import IDebtControllerProps, {SortType} from './types';
@@ -67,9 +66,6 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
                 {sortType === SortType.ByExpirationDate && 'дате возврата'}
             </button>
           </div>
-          <Button type="button" mode="secondary" size="s">
-            <Icon28EditOutline />
-          </Button>
         </div>
         <div className={debtContainer('content')}>
           {index === 0 && sortType === SortType.ByMaximumSum && (
