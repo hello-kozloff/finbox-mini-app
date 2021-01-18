@@ -1,7 +1,7 @@
 import React from 'react';
 import {block} from "bem-cn";
 import {ActionSheet, ActionSheetItem, usePlatform} from '@vkontakte/vkui';
-import {DebtCarousel} from './modules';
+import {DebtCarousel, DebtSection} from './modules';
 import {getCurrentUserId} from "../../utils";
 import IDebtControllerProps, {SortType} from './types';
 import {connect} from "react-redux";
@@ -96,7 +96,8 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
 
   return (
     <div>
-      <DebtCarousel data={data} platform={platform} onChange={(index) => setIndex(index)} />
+      <DebtSection data={data} onChange={(index) => setIndex(index)} />
+      <DebtCarousel data={data} onChange={(index) => setIndex(index)} />
       <div className={debtContainer()}>
         <div className={debtContainer('header')}>
           <div className={debtContainer('title')}>

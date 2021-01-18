@@ -2,9 +2,9 @@ import React from 'react';
 import Flickity, { FlickityOptions } from 'react-flickity-component';
 import { DashboardCard } from '../../../Dashboard/modules';
 import { DebtType } from "../../../../modals/AddDebt/types";
-import IDebtCarousel from './types';
+import IDebtSection from './types';
 
-export default class DebtCarousel extends React.Component<IDebtCarousel> {
+export default class  DebtSection extends React.Component<IDebtSection> {
   public instance: Flickity | undefined;
 
   componentDidMount() {
