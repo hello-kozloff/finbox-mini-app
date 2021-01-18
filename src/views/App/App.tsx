@@ -29,6 +29,14 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
   }
 
   /**
+   * The function show popout.
+   * @param popout
+   */
+  function onShowPopout(popout: ViewProps['popout']): void {
+    return setPopout(popout);
+  }
+
+  /**
    * The function cancel modal.
    */
   function onCancelModal(): void {
@@ -43,7 +51,7 @@ function AppView(props: ViewProps & PanelProps & { friends: IFriendsState }): Re
 
   return (
     <View id={props.id} modal={modal} popout={popout} activePanel={props.activePanel}>
-      <AppPanel id={props.id} onShowModal={onShowModal} />
+      <AppPanel id={props.id} onShowModal={onShowModal} onShowPopout={onShowPopout} />
     </View>
   );
 }
