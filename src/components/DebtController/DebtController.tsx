@@ -11,6 +11,7 @@ import {DebtCard} from "../index";
 import firebase from "../../firebase";
 import moment from 'moment';
 import {DebtType} from "../../modals/AddDebt/types";
+import {classNames} from "@vkontakte/vkjs";
 
 const debtContainer = block('debt-container');
 
@@ -94,14 +95,11 @@ function DebtController(props: IDebtControllerProps): React.ReactElement {
     });
   }
 
+  console.log(document.body.clientWidth);
+
   return (
     <div>
-      <div className="debt-desktop">
-        <DebtSection data={data} index={index} onChange={(index) => setIndex(index)} />
-      </div>
-      <div className="debt-mobile">
-        <DebtCarousel data={data} onChange={(index) => setIndex(index)} />
-      </div>
+      <DebtSection data={data} index={index} onChange={(index) => setIndex(index)} />
       <div className={debtContainer()}>
         <div className={debtContainer('header')}>
           <div className={debtContainer('title')}>

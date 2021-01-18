@@ -5,23 +5,7 @@ import { DebtType } from "../../../../modals/AddDebt/types";
 import IDebtSection from './types';
 
 export default class  DebtSection extends React.Component<IDebtSection> {
-  public instance: Flickity | undefined;
-
-  componentDidMount() {
-    this.instance?.on('change', (index: number) => {
-      this.props.onChange && this.props.onChange(index);
-    });
-  }
-
   render() {
-    const options: FlickityOptions = {
-      initialIndex: 0,
-      cellAlign: 'left',
-      draggable: false,
-      prevNextButtons: false,
-      pageDots: false
-    };
-
     /**
      * The function render total value.
      * @param type
@@ -42,8 +26,8 @@ export default class  DebtSection extends React.Component<IDebtSection> {
     }
 
     return (
-      <Flickity flickityRef={(ref) => this.instance = ref} options={options}>
-        <div className="carousel-cell carousel-cell-1">
+      <div className="carrousel-1">
+        <div className="carrousel-1-cell">
           <DashboardCard
             title="Выданные займы"
             subtitle={getTotalValue(DebtType.borrowed, this.props.data)}
@@ -51,7 +35,7 @@ export default class  DebtSection extends React.Component<IDebtSection> {
             selected={this.props.index === 0}
           />
         </div>
-        <div className="carousel-cell carousel-cell-2">
+        <div className="carrousel-1-cell">
           <DashboardCard
             title="Полученные займы"
             subtitle={getTotalValue(DebtType.lent, this.props.data)}
@@ -59,7 +43,7 @@ export default class  DebtSection extends React.Component<IDebtSection> {
             selected={this.props.index === 1}
           />
         </div>
-      </Flickity>
+      </div>
     );
   }
 }

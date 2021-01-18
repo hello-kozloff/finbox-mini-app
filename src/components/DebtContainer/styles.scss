@@ -29,3 +29,19 @@
     background-color: transparent;
   }
 }
+
+.carrousel-1 {
+  display: flex;
+  padding: 0 20px;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.carrousel-1-cell {
+  padding: 0 12px;
+  width: 100%;
+}
+
+.dashboard-card__subtitle {
+  max-width: 80px;
+}

@@ -3,20 +3,22 @@
 }
 
 .dashboard-card__container {
-  box-shadow: 0px 10px 20px rgba(44, 37, 210, 0.05);
+  box-shadow: 0px 10px 20px rgba(44, 37, 210, 0.2);
   background-color: var(--white);
   border-radius: 8px;
   box-sizing: border-box;
   width: 100%;
-  min-width: 240px;
 
   padding: 12px 16px;
   align-items: flex-start;
   flex-direction: column;
   display: flex;
 
+  transition: .25s ease-out;
+
   &_selected {
-    box-shadow: 0px 10px 20px rgba(44, 37, 210, 0.2);
+    opacity: .5;
+    box-shadow: none;
   }
 }
 
@@ -39,13 +41,32 @@
 }
 
 .debt-desktop {
-  @media screen and (max-width: 630px) {
-    display: none;
-  }
+  display: none;
 }
 
 .debt-mobile {
-  @media screen and (min-width: 629px) {
-    display: none;
+  display: none;
+}
+
+.cc_platform {
+  &_vkcom {
+    .debt-desktop {
+      display: block;
+    }
+
+    .debt-mobile {
+      display: none;
+    }
+  }
+
+  &_android,
+  &_ios {
+    .debt-desktop {
+      display: none!important;
+    }
+
+    .debt-mobile {
+      display: block!important;
+    }
   }
 }
