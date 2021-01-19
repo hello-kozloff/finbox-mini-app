@@ -1,11 +1,12 @@
 const config = {
-  apiKey: "AIzaSyCumX0HBTrTWuiyCOkwfSmI_ro5pGEGCzM",
-  authDomain: "finbox-mini-app.firebaseapp.com",
-  databaseURL: "https://finbox-mini-app-default-rtdb.firebaseio.com",
-  projectId: "finbox-mini-app",
-  storageBucket: "finbox-mini-app.appspot.com",
-  messagingSenderId: "261332152446",
-  appId: "1:261332152446:web:1b0638cbb10e860a86a82f"
+  apiKey: "AIzaSyDillJ72qi971FBmCXftfZMPKHjaaO_Gxs",
+  authDomain: "vk-mini-app-all-loans.firebaseapp.com",
+  databaseURL: "https://vk-mini-app-all-loans-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "vk-mini-app-all-loans",
+  storageBucket: "vk-mini-app-all-loans.appspot.com",
+  messagingSenderId: "844131762358",
+  appId: "1:844131762358:web:be87f0e05f4f1677b3a617",
+  measurementId: "G-TNTVK4YX89"
 };
 
 export default config;
